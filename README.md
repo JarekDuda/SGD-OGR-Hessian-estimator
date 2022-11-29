@@ -10,3 +10,7 @@ Overview of methods: https://www.dropbox.com/s/54v8cwqyp7uvddk/SGD.pdf and talk:
 https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/SGD-ORG%20basic.nb basic implementation from https://arxiv.org/pdf/1901.11457 with Beale function optimization, leading to the below diagram.
 
 ![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/OGR%20beale.png)
+
+Comparison with momentum in the same scenario:
+
+![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/momentum.png)
