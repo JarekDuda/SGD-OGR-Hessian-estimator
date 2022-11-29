@@ -11,6 +11,6 @@ https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/SGD-ORG%20basic
 
 ![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/OGR%20beale.png)
 
-Below is comparison with momentum method in the same scenario - using fixed learning rate (the largest avoding escape to infinity), while OGR chooses learning rates based on local trend of gradients - allowing for much longer steps.
+Below is comparison with momentum method in the same scenario - using fixed learning rate (the largest avoding escape to infinity), while OGR chooses learning rates based on local trend of gradients - allowing for much longer steps, leading to ~50x smaller final values after 30 steps.
 
 ![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/momentum.png)
