@@ -7,10 +7,6 @@ The main article: https://arxiv.org/pdf/1901.11457 , focused on 1D evolving para
 
 Overview of methods: https://www.dropbox.com/s/54v8cwqyp7uvddk/SGD.pdf and talk: https://youtu.be/ZSnYtPINcug
 
-https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/SGD-ORG%20basic.nb basic implementation from https://arxiv.org/pdf/1901.11457 with Beale function optimization, leading to the below diagram:
+https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/SGD-ORG%20basic.nb basic implementation from https://arxiv.org/pdf/1901.11457 with Beale function optimization, leading to the below optimization trajectories, comparison with momentum and ADAM:
 
 ![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/OGR%20beale.png)
-
-Below is comparison with momentum method in the same scenario - using fixed learning rate (the largest avoding escape to infinity), while OGR chooses learning rates based on local trend of gradients - allowing for much longer steps, leading to ~50x smaller final values after 30 steps.
-
-![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/momentum.png)
