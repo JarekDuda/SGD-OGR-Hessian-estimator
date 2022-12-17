@@ -7,6 +7,10 @@ The main article: https://arxiv.org/pdf/1901.11457 , focused on 1D evolving para
 
 Overview of methods: https://www.dropbox.com/s/54v8cwqyp7uvddk/SGD.pdf and talk: https://youtu.be/ZSnYtPINcug
 
-https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/SGD-ORG%20basic.nb basic implementation from https://arxiv.org/pdf/1901.11457 with Beale function optimization, leading to the below optimization trajectories, comparison with momentum and ADAM:
+https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/SGD-ORG%20basic.nb basic implementation from https://arxiv.org/pdf/1901.11457 with Beale function optimization, leading to the below optimization trajectories, comparison with momentum and ADAM - 2D full 2nd order method:
 
 ![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/OGR%20beale.png)
+
+2nd order for subspace in high dimension - for neural network training d~10 subpsace in dimension D in millions:
+
+![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/subspace%20OGR.png)
