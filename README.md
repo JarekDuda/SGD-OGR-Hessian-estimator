@@ -13,4 +13,4 @@ https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/SGD-ORG%20basic
 
 2nd order for subspace in high dimension - for neural network training d~10 subpsace in dimension D in millions:
 
-![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/subspace%20OGR.png)
+![alt text](https://github.com/JarekDuda/SGD-OGR-Hessian-estimator/blob/main/dsOGRtc.png)
