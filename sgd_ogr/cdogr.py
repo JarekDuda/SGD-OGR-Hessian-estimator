@@ -8,7 +8,7 @@ from torch.optim import Optimizer
 
 class cdOGR(Optimizer):
 
-    def __init__(self, params, lr=0.5, beta=0.6, div=1.5, cut=5.0, eps=1e-8):
+    def __init__(self, params, lr=0.5, beta=0.6, div=1.0, eps=1e-8):
         if not 0.0 <= lr:
             raise ValueError("Invalid learning rate: {}".format(lr))
         if not 0.0 <= eps:
@@ -16,7 +16,7 @@ class cdOGR(Optimizer):
         if not 0.0 <= beta < 1.0:
             raise ValueError("Invalid beta parameter value: {}".format(beta))
 
-        defaults = dict(lr=lr, beta=beta, div=div, cut=cut, eps=eps)
+        defaults = dict(lr=lr, beta=beta, div=div, eps=eps)
         super().__init__(params, defaults)
 
     def __setstate__(self, state):
@@ -82,7 +82,6 @@ class cdOGR(Optimizer):
                  beta=group['beta'],
                  lr=group['lr'],
                  div=group['div'],
-                 cut=group['cut'],
                  eps=group['eps'],
                  )
 
@@ -101,7 +100,6 @@ def dogr(params: List[Tensor],
          beta: float,
          lr: float,
          div: float,
-         cut: float,
          eps: float):
     for i, param in enumerate(params):
         grad = grads[i]
@@ -113,21 +111,27 @@ def dogr(params: List[Tensor],
         exp_avg_sq_tt = exp_avg_sq_tts[i]
         exp_avg_sq_gg = exp_avg_sq_ggs[i]
 
-        step_t = state_steps[i]
-
-        # update step
-        step_t += 1
-
+        # mt^t = \beta * mt^{t-1} + (1-\beta)*\theta^t
         exp_avg_mt.mul_(beta).add_(param, alpha=1 - beta)
+
+        # mg^t = \beta * mg^{t-1} + (1-\beta)*grad^t
         exp_avg_mg.mul_(beta).add_(grad, alpha=1 - beta)
+
+        # m = (1 - \eta) * m^{t-1} + \eta * grad^t
         exp_avg_m.mul_(1.0 - lr).add_(grad, alpha=lr)
 
+        # \theta^t - mt^t
         dtm = (param - exp_avg_mt)
+
+        # grad^t - mg^t
         dgm = (grad - exp_avg_mg)
 
-        exp_avg_sq_tt.mul_(beta).addcmul_(dtm, dtm.conj(), value=1 - beta).add_(eps)
-        exp_avg_sq_gg.mul_(beta).addcmul_(dgm, dgm.conj(), value=1 - beta)
+        # dtt^t = \beta * dtt^{t-1} + (1 - \beta) * (\theta^t - mt^t)**2
+        exp_avg_sq_tt.mul_(beta).addcmul_(dtm, dtm, value=1 - beta).add_(eps)
 
-        denom = torch.abs(exp_avg_sq_gg / exp_avg_sq_tt).sqrt().mul_(div).clamp_max_(cut).add_(eps)
+        # dgg^t = \beta * dgg^{t-1} + (1 - \beta) * (grad^t - mg^t)**2
+        exp_avg_sq_gg.mul_(beta).addcmul_(dgm, dgm, value=1 - beta)
+
+        denom = torch.abs(exp_avg_sq_gg / exp_avg_sq_tt).sqrt().mul_(div).add_(eps)
 
         param.addcdiv_(exp_avg_m, denom, value=-1.0)

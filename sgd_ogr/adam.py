@@ -96,20 +96,26 @@ def adam(params: List[Tensor],
         step_t += 1
 
         # Decay the first and second moment running average coefficient
-        exp_avg.mul_(beta1).add_(grad, alpha=1 - beta1)  # m^t = \beta_1 * m^{t-1} + (1-\beta_1)*grad^t
 
-        exp_avg_sq.mul_(beta2).addcmul_(grad, grad.conj(), value=1 - beta2)  # v^t = \beta_2*v^{t-1}+(1-\beta_2)* (grad^t)**2
+        # m^t = \beta_1 * m^{t-1} + (1-\beta_1)*grad^t
+        exp_avg.mul_(beta1).add_(grad, alpha=1 - beta1)
+
+        # v^t = \beta_2*v^{t-1}+(1-\beta_2)* (grad^t)**2
+        exp_avg_sq.mul_(beta2).addcmul_(grad, grad, value=1 - beta2)
 
         step = step_t.item()
 
         bias_correction1 = 1 - beta1 ** step
         bias_correction2 = 1 - beta2 ** step
 
-        step_size = lr / bias_correction1  # \eta / (1-beta_1 ** t)
+        # \eta / (1-beta_1 ** t)
+        step_size = lr / bias_correction1
 
-        bias_correction2_sqrt = math.sqrt(bias_correction2)  # sqrt(1-beta_2 ** t)
+        # sqrt(1-beta_2 ** t)
+        bias_correction2_sqrt = math.sqrt(bias_correction2)
 
-        denom = (exp_avg_sq.sqrt() / bias_correction2_sqrt).add_(eps)  # sqrt(v^t) / sqrt(1-beta_2 ** t) + \eps
+        # sqrt(v^t) / sqrt(1-beta_2 ** t) + \eps
+        denom = (exp_avg_sq.sqrt() / bias_correction2_sqrt).add_(eps)
 
-        param.addcdiv_(exp_avg, denom, value=-step_size)  # m^t / $denom * - (\eta / (1-beta_1 ** t))
-
+        # m^t / $denom * - (\eta / (1-beta_1 ** t))
+        param.addcdiv_(exp_avg, denom, value=-step_size)

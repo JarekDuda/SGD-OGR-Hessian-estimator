@@ -49,6 +49,7 @@ def visualize_optimizer(optim, n_steps, title=None, **params):
 if __name__ == '__main__':
     visualize_optimizer(SimplifiedTorchAdam, 20, 'Simplified Torch Adam', lr=0.35)
     visualize_optimizer(torch.optim.SGD, 20, 'Torch SGD', lr=0.35)
-    visualize_optimizer(dOGR, 40, 'dOGR', lr=0.05, beta=0.5, div=1.5, cut=5.0)
-    visualize_optimizer(cdOGR, 20, 'cdOGR', lr=0.004, beta=0.6, div=1.1, cut=0.2)
+    visualize_optimizer(dOGR, 20, 'dOGR', lr=0.35, beta=0.9, div=1.0)
+    visualize_optimizer(cdOGR, 20, 'cdOGR', lr=0.5, beta=0.6, div=1.0)
+
 
