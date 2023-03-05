@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     60426,       1372]
-NotebookOptionsPosition[     59753,       1352]
-NotebookOutlinePosition[     60242,       1370]
-CellTagsIndexPosition[     60199,       1367]
+NotebookDataLength[     62869,       1411]
+NotebookOptionsPosition[     62178,       1390]
+NotebookOutlinePosition[     62667,       1408]
+CellTagsIndexPosition[     62624,       1405]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -59,197 +59,203 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"Manipulate", "[", 
   RowBox[{
-   RowBox[{
-    RowBox[{"SeedRandom", "[", "seed", "]"}], ";", 
-    RowBox[{"rrn", "=", 
-     RowBox[{"Round", "[", "rn", "]"}]}], ";", 
-    RowBox[{"f", "=", 
-     RowBox[{"fun", "[", 
-      RowBox[{"[", "fn", "]"}], "]"}]}], ";", 
-    RowBox[{"g", "=", 
-     RowBox[{"gr", "[", 
-      RowBox[{"[", "fn", "]"}], "]"}]}], ";", 
+   RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"ix", ",", "iy"}], "}"}], "=", "pt"}], ";", 
-    "\[IndentingNewLine]", 
-    RowBox[{"Switch", "[", 
-     RowBox[{"mode", ",", "                                    ", 
-      RowBox[{"(*", " ", 
-       RowBox[{
-        RowBox[{"3", " ", "modes", " ", "of", " ", 
-         RowBox[{"work", ":", " ", "DensityPlot"}]}], ",", " ", "Plot3D", ",",
-         " ", 
-        RowBox[{"evaluation", " ", "on", " ", "lattice"}]}], " ", "*)"}], 
-      "\[IndentingNewLine]", "1", ",", 
+      RowBox[{"traj", ",", "eval"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"SeedRandom", "[", "seed", "]"}], ";", 
+      RowBox[{"rrn", "=", 
+       RowBox[{"Round", "[", "rn", "]"}]}], ";", 
+      RowBox[{"f", "=", 
+       RowBox[{"fun", "[", 
+        RowBox[{"[", "fn", "]"}], "]"}]}], ";", 
+      RowBox[{"g", "=", 
+       RowBox[{"gr", "[", 
+        RowBox[{"[", "fn", "]"}], "]"}]}], ";", 
       RowBox[{
-       RowBox[{"traj", "=", 
-        RowBox[{"Table", "[", 
+       RowBox[{"{", 
+        RowBox[{"ix", ",", "iy"}], "}"}], "=", "pt"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Switch", "[", 
+       RowBox[{"mode", ",", "                                    ", 
+        RowBox[{"(*", " ", 
          RowBox[{
-          RowBox[{"fndtr", "[", 
-           RowBox[{"ix", ",", "iy", ",", "mt"}], "]"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], ";", 
-       RowBox[{"Show", "[", 
+          RowBox[{"3", " ", "modes", " ", "of", " ", 
+           RowBox[{"work", ":", " ", "DensityPlot"}]}], ",", " ", "Plot3D", 
+          ",", " ", 
+          RowBox[{"evaluation", " ", "on", " ", "lattice"}]}], " ", "*)"}], 
+        "\[IndentingNewLine]", "1", ",", 
         RowBox[{
-         RowBox[{"DensityPlot", "[", 
-          RowBox[{
-           RowBox[{"Log", "[", "f", "]"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", 
-             RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"y", ",", 
-             RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
-           RowBox[{"ImageSize", "->", "400"}], ",", 
-           RowBox[{"PlotLabel", "->", "labn"}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Graphics", "[", 
-          RowBox[{"{", 
+         RowBox[{"traj", "=", 
+          RowBox[{"Table", "[", 
            RowBox[{
-            RowBox[{"Text", "[", 
-             RowBox[{"\"\<x\>\"", ",", 
-              RowBox[{"{", 
-               RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", "Orange", ",", 
-            RowBox[{"Ball", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"ix", ",", "iy"}], "}"}], ",", "0.1"}], "]"}], ",", 
-            RowBox[{"Table", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Thickness", "[", "0.01", "]"}], ",", 
-                RowBox[{"col", "[", 
-                 RowBox[{"[", "mt", "]"}], "]"}], ",", 
-                RowBox[{"Line", "[", 
-                 RowBox[{"traj", "[", 
-                  RowBox[{"[", "mt", "]"}], "]"}], "]"}]}], "}"}], ",", 
-              RowBox[{"{", 
-               RowBox[{"mt", ",", "5"}], "}"}]}], "]"}]}], "}"}], "]"}]}], 
-        "]"}]}], ",", "\[IndentingNewLine]", "2", ",", 
-      RowBox[{
-       RowBox[{"traj", "=", 
-        RowBox[{"Table", "[", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"tr", "=", 
             RowBox[{"fndtr", "[", 
-             RowBox[{"ix", ",", "iy", ",", "mt"}], "]"}]}], ";", 
-           RowBox[{"Transpose", "[", 
-            RowBox[{"Append", "[", 
-             RowBox[{
-              RowBox[{"Transpose", "[", "tr", "]"}], ",", 
-              RowBox[{"Table", "[", 
-               RowBox[{
-                RowBox[{"f", "/.", 
-                 RowBox[{"sub", "[", "t", "]"}]}], ",", 
-                RowBox[{"{", 
-                 RowBox[{"t", ",", "tr"}], "}"}]}], "]"}]}], "]"}], "]"}]}], 
-          ",", 
-          RowBox[{"{", 
-           RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"Show", "[", 
-        RowBox[{
-         RowBox[{"Plot3D", "[", 
-          RowBox[{"f", ",", 
-           RowBox[{"{", 
-            RowBox[{"x", ",", 
-             RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"y", ",", 
-             RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
-           RowBox[{"ImageSize", "->", "400"}], ",", 
-           RowBox[{"PlotLabel", "->", "labn"}]}], "]"}], ",", 
-         RowBox[{"Graphics3D", "[", 
-          RowBox[{"{", 
-           RowBox[{"Thick", ",", 
-            RowBox[{"Line", "[", 
+             RowBox[{"ix", ",", "iy", ",", "mt"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], ";", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"ContourPlot", "[", 
+            RowBox[{
+             RowBox[{"Log", "[", "f", "]"}], ",", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"{", 
-                RowBox[{"0", ",", "0", ",", 
-                 RowBox[{"10", "^", "6"}]}], "}"}], ",", 
-               RowBox[{"{", 
-                RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], "]"}], ",",
-             "Orange", ",", 
-            RowBox[{"Ball", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"ix", ",", "iy", ",", 
-                RowBox[{"f", "/.", 
-                 RowBox[{"sub", "[", 
-                  RowBox[{"{", 
-                   RowBox[{"ix", ",", "iy"}], "}"}], "]"}]}]}], "}"}], ",", 
-              "0.1"}], "]"}], ",", 
-            RowBox[{"Table", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Thickness", "[", "0.01", "]"}], ",", 
-                RowBox[{"col", "[", 
-                 RowBox[{"[", "mt", "]"}], "]"}], ",", 
-                RowBox[{"Line", "[", 
-                 RowBox[{"traj", "[", 
-                  RowBox[{"[", "mt", "]"}], "]"}], "]"}]}], "}"}], ",", 
-              RowBox[{"{", 
-               RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], "}"}], "]"}]}], 
-        "]"}]}], ",", "\[IndentingNewLine]", "3", ",", 
-      RowBox[{
-       RowBox[{"eval", "=", 
-        RowBox[{"Table", "[", 
-         RowBox[{
-          RowBox[{"Sort", "[", 
-           RowBox[{"Flatten", "[", 
-            RowBox[{"Table", "[", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"fndtr", "[", 
-                RowBox[{"ix", ",", "iy", ",", "mt"}], "]"}], ";", 
-               RowBox[{"f", "/.", 
-                RowBox[{"sub", "[", "\[Theta]", "]"}]}]}], ",", 
-              RowBox[{"{", 
-               RowBox[{"ix", ",", 
-                RowBox[{"-", "rrn"}], ",", "rrn"}], "}"}], ",", 
-              RowBox[{"{", 
-               RowBox[{"iy", ",", 
-                RowBox[{"-", "rrn"}], ",", "rrn"}], "}"}]}], "]"}], "]"}], 
-           "]"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"ListLogPlot", "[", 
-        RowBox[{"eval", ",", 
-         RowBox[{"PlotStyle", "->", "col"}], ",", 
-         RowBox[{"PlotLabels", "->", "labn"}], ",", 
-         RowBox[{"ImageSize", "->", "400"}], ",", 
-         RowBox[{"PlotLabel", "->", 
-          RowBox[{"Column", "[", 
-           RowBox[{
+              RowBox[{"x", ",", 
+               RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"y", ",", 
+               RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
+             RowBox[{"ImageSize", "->", "500"}], ",", 
+             RowBox[{"PlotLabel", "->", "labn"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Graphics", "[", 
             RowBox[{"{", 
              RowBox[{
-              RowBox[{"Row", "[", 
-               RowBox[{"{", 
-                RowBox[{"\"\<Sorted values from \>\"", ",", 
-                 RowBox[{
-                  RowBox[{"2", "rrn"}], "+", "1"}], ",", "\"\<x\>\"", ",", 
-                 RowBox[{
-                  RowBox[{"2", "rrn"}], "+", "1"}], ",", 
-                 "\"\< lattice after \>\"", ",", "steps", ",", 
-                 "\"\< steps\>\""}], "}"}], "]"}], ",", " ", 
-              "\"\<Their geometric means:\>\"", ",", 
-              RowBox[{"Grid", "[", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<x\>\"", ",", "Red"}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", "Orange", ",", 
+              RowBox[{"Ball", "[", 
                RowBox[{
                 RowBox[{"{", 
-                 RowBox[{"labn", ",", 
-                  RowBox[{"Exp", "[", 
-                   RowBox[{"Map", "[", 
+                 RowBox[{"ix", ",", "iy"}], "}"}], ",", "0.1"}], "]"}], ",", 
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Thickness", "[", "0.01", "]"}], ",", 
+                  RowBox[{"col", "[", 
+                   RowBox[{"[", "mt", "]"}], "]"}], ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"traj", "[", 
+                    RowBox[{"[", "mt", "]"}], "]"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"mt", ",", "5"}], "}"}]}], "]"}]}], "}"}], "]"}]}], 
+          "]"}]}], ",", "\[IndentingNewLine]", "2", ",", 
+        RowBox[{
+         RowBox[{"traj", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"tr", "=", 
+              RowBox[{"fndtr", "[", 
+               RowBox[{"ix", ",", "iy", ",", "mt"}], "]"}]}], ";", 
+             RowBox[{"Transpose", "[", 
+              RowBox[{"Append", "[", 
+               RowBox[{
+                RowBox[{"Transpose", "[", "tr", "]"}], ",", 
+                RowBox[{"Table", "[", 
+                 RowBox[{
+                  RowBox[{"f", "/.", 
+                   RowBox[{"sub", "[", "t", "]"}]}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"t", ",", "tr"}], "}"}]}], "]"}]}], "]"}], "]"}]}],
+             ",", 
+            RowBox[{"{", 
+             RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"Plot3D", "[", 
+            RowBox[{"f", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"y", ",", 
+               RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
+             RowBox[{"ImageSize", "->", "500"}], ",", 
+             RowBox[{"PlotLabel", "->", "labn"}]}], "]"}], ",", 
+           RowBox[{"Graphics3D", "[", 
+            RowBox[{"{", 
+             RowBox[{"Thick", ",", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", 
+                   RowBox[{"10", "^", "6"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], "]"}], 
+              ",", "Orange", ",", 
+              RowBox[{"Ball", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"ix", ",", "iy", ",", 
+                  RowBox[{"f", "/.", 
+                   RowBox[{"sub", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"ix", ",", "iy"}], "}"}], "]"}]}]}], "}"}], ",", 
+                "0.1"}], "]"}], ",", 
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Thickness", "[", "0.01", "]"}], ",", 
+                  RowBox[{"col", "[", 
+                   RowBox[{"[", "mt", "]"}], "]"}], ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"traj", "[", 
+                    RowBox[{"[", "mt", "]"}], "]"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], "}"}], "]"}]}],
+           "]"}]}], ",", "\[IndentingNewLine]", "3", ",", 
+        RowBox[{
+         RowBox[{"eval", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Sort", "[", 
+             RowBox[{"Flatten", "[", 
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"fndtr", "[", 
+                  RowBox[{"ix", ",", "iy", ",", "mt"}], "]"}], ";", 
+                 RowBox[{"f", "/.", 
+                  RowBox[{"sub", "[", "\[Theta]", "]"}]}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"ix", ",", 
+                  RowBox[{"-", "rn"}], ",", "rn", ",", "1"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"iy", ",", 
+                  RowBox[{"-", "rn"}], ",", "rn", ",", "1"}], "}"}]}], "]"}], 
+              "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ListLogPlot", "[", 
+          RowBox[{"eval", ",", 
+           RowBox[{"PlotStyle", "->", "col"}], ",", 
+           RowBox[{"PlotLabels", "->", "labn"}], ",", 
+           RowBox[{"ImageSize", "->", "500"}], ",", 
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{"Column", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Row", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Sorted values from \>\"", ",", 
+                   RowBox[{
+                    RowBox[{"2", "rrn"}], "+", "1"}], ",", "\"\<x\>\"", ",", 
+                   RowBox[{
+                    RowBox[{"2", "rrn"}], "+", "1"}], ",", 
+                   "\"\< lattice after \>\"", ",", "steps", ",", 
+                   "\"\< steps\>\""}], "}"}], "]"}], ",", " ", 
+                "\"\<Their geometric means:\>\"", ",", 
+                RowBox[{"Grid", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"labn", ",", 
+                    RowBox[{"Exp", "[", 
+                    RowBox[{"Map", "[", 
                     RowBox[{"Mean", ",", 
                     RowBox[{"Log", "[", "eval", "]"}]}], "]"}], "]"}]}], 
-                 "}"}], ",", 
-                RowBox[{"Frame", "->", "All"}]}], "]"}]}], "}"}], ",", 
-            "Center"}], "]"}]}]}], "]"}]}]}], "]"}]}], ",", 
+                   "}"}], ",", 
+                  RowBox[{"Frame", "->", "All"}]}], "]"}]}], "}"}], ",", 
+              "Center"}], "]"}]}]}], "]"}]}]}], "]"}]}]}], "]"}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"{", 
     RowBox[{
@@ -259,10 +265,10 @@ Cell[BoxData[
         RowBox[{"1", ",", "2"}], "}"}], ",", "\"\<start:\>\""}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
-       RowBox[{"-", "2"}], ",", 
-       RowBox[{"-", "2"}]}], "}"}], ",", 
+       RowBox[{"-", "3"}], ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"2", ",", "2"}], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"3", ",", "3"}], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
    RowBox[{"Dynamic", "[", 
     RowBox[{"Row", "[", 
      RowBox[{"{", 
@@ -333,12 +339,13 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"mode", ",", "1", ",", "\"\<MODE:\>\""}], "}"}], ",", 
+      RowBox[{"mode", ",", "1", ",", "\"\<mode:\>\""}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
-       RowBox[{"1", "->", "\"\<plot2D\>\""}], ",", 
-       RowBox[{"2", "->", "\"\<plot3D\>\""}], ",", 
-       RowBox[{"3", "->", "\"\<eval\>\""}]}], "}"}]}], "}"}], ",", " ", 
+       RowBox[{"1", "->", "\"\<2D\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<3D\>\""}], ",", 
+       RowBox[{"3", "->", "\"\<eval\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", "SetterBar"}]}], "}"}], ",", " ", 
    RowBox[{"(*", " ", 
     RowBox[{"mode", " ", "of", " ", "work"}], " ", "*)"}], 
    "\[IndentingNewLine]", "Delimiter", ",", 
@@ -677,6 +684,7 @@ Cell[BoxData[
            RowBox[{"Table", "[", 
             RowBox[{
              RowBox[{
+              RowBox[{"p\[Theta]", "=", "\[Theta]"}], ";", 
               RowBox[{
                RowBox[{
                 RowBox[{"{", 
@@ -693,10 +701,8 @@ Cell[BoxData[
                RowBox[{
                 RowBox[{
                  RowBox[{"Norm", "[", "\[Theta]", "]"}], ">", "maxd"}], ",", 
-                RowBox[{"\[Theta]", "=", 
-                 RowBox[{
-                  RowBox[{"Normalize", "[", "\[Theta]", "]"}], "*", 
-                  "maxd"}]}]}], "]"}], ";", "\[Theta]"}], ",", 
+                RowBox[{"\[Theta]", "=", "p\[Theta]"}]}], "]"}], ";", 
+              "\[Theta]"}], ",", 
              RowBox[{"{", 
               RowBox[{"i", ",", "steps"}], "}"}]}], "]"}], ",", 
            RowBox[{"{", 
@@ -706,8 +712,14 @@ Cell[BoxData[
        RowBox[{"proper", " ", "optimization"}], " ", "*)"}], 
       "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
-       RowBox[{"single", " ", "step", " ", "of", " ", 
-        RowBox[{"methods", " ", ":"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"single", " ", "step", " ", "of", " ", "methods"}], ",", " ", 
+        RowBox[{
+         RowBox[{"OGR", ":", " ", "https", ":"}], "//", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"arxiv", ".", "org"}], "/", "pdf"}], "/", 
+          "1901.11457"}]}]}], "  ", "*)"}], "\[IndentingNewLine]", 
       RowBox[{
        RowBox[{"vanillaSGD", "[", "ng_", "]"}], ":=", 
        RowBox[{"(", 
@@ -808,14 +820,19 @@ Cell[BoxData[
              SuperscriptBox[
               RowBox[{"(", 
                RowBox[{"ng", "-", "mg"}], ")"}], "2"], "-", "dgg"}], 
-            ")"}]}]}], ";", " ", "\[IndentingNewLine]", 
+            ")"}]}]}], ";", "                           ", 
+         RowBox[{"(*", " ", 
+          RowBox[{"update", " ", "averages"}], " ", "*)"}], " ", 
+         "\[IndentingNewLine]", 
          RowBox[{"\[Theta]", "-=", 
           RowBox[{"\[Eta]", "*", "m", "*", 
            RowBox[{"Sqrt", "[", 
             RowBox[{"d\[Theta]\[Theta]", "/", 
              RowBox[{"(", 
               RowBox[{"dgg", "+", "epsilon"}], ")"}]}], "]"}]}]}]}], ")"}]}], 
-      ";", " ", "\[IndentingNewLine]", 
+      ";", "                                                      ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Newton", " ", "step"}], " ", "*)"}], "\[IndentingNewLine]", 
       RowBox[{
        RowBox[{"fOGR", "[", "ng_", "]"}], ":=", 
        RowBox[{"(", 
@@ -843,7 +860,10 @@ Cell[BoxData[
               RowBox[{
                RowBox[{"\[Theta]", "-", "m\[Theta]"}], ",", 
                RowBox[{"\[Theta]", "-", "m\[Theta]"}]}], "]"}], "-", 
-             "m\[Theta]\[Theta]"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+             "m\[Theta]\[Theta]"}], ")"}]}]}], ";", "   ", 
+         RowBox[{"(*", " ", 
+          RowBox[{"update", " ", "averages"}], " ", "*)"}], 
+         "\[IndentingNewLine]", 
          RowBox[{"mg", "+=", 
           RowBox[{"\[Beta]", 
            RowBox[{"(", 
@@ -889,13 +909,14 @@ Cell[BoxData[
            RowBox[{"ma", "[", "pH", "]"}], ".", "m"}]}]}], ")"}]}], ";"}], 
      "                        ", 
      RowBox[{"(*", " ", 
-      RowBox[{
-       RowBox[{"1", "/"}], "|", 
+      RowBox[{"Newton", ",", " ", 
        RowBox[{
-        RowBox[{"~", "eigenvalues"}], " ", "of", " ", 
-        RowBox[{"pH", ":", " ", 
-         RowBox[{
-          RowBox[{"predicted", " ", "Hessian"}], "|"}]}]}]}], " ", "*)"}], 
+        RowBox[{"1", "/"}], "|", 
+        RowBox[{
+         RowBox[{"~", "eigenvalues"}], " ", "of", " ", 
+         RowBox[{"pH", ":", " ", 
+          RowBox[{
+           RowBox[{"predicted", " ", "Hessian"}], "|"}]}]}]}]}], " ", "*)"}], 
      ")"}]}], ",", "\[IndentingNewLine]", 
    RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
     RowBox[{"{", 
@@ -1011,14 +1032,27 @@ Cell[BoxData[
    3.8869934624624777`*^9, 3.886993599727572*^9}, {3.8869936534476304`*^9, 
    3.88699373961231*^9}, {3.886993851824436*^9, 3.8869938851774206`*^9}, {
    3.8869940749269505`*^9, 3.8869940984629717`*^9}, {3.8869946352833996`*^9, 
-   3.8869946517307234`*^9}},
- CellLabel->"In[20]:=",ExpressionUUID->"75bdf937-e2bb-4290-8378-7757bda9235b"],
+   3.8869946517307234`*^9}, {3.886996487227641*^9, 3.8869965899275246`*^9}, {
+   3.8869981688677893`*^9, 3.886998172547323*^9}, {3.886999122498805*^9, 
+   3.8869991340059013`*^9}, 3.886999178463729*^9, {3.8869999537269983`*^9, 
+   3.8869999650628653`*^9}, {3.887000019906124*^9, 3.88700004920477*^9}, {
+   3.887000180419843*^9, 3.8870001809261293`*^9}, {3.887005520630498*^9, 
+   3.88700553950725*^9}, {3.887005573561554*^9, 3.8870055818493223`*^9}, {
+   3.8870056718212786`*^9, 3.887005671871501*^9}, {3.887010535501856*^9, 
+   3.887010553489649*^9}, {3.8870105879898915`*^9, 3.887010588109723*^9}, {
+   3.8870108460595474`*^9, 3.887010851891634*^9}, {3.887010951691575*^9, 
+   3.8870109588090496`*^9}, {3.8870115756728363`*^9, 3.8870115761422787`*^9}, 
+   3.887012200104436*^9, {3.887012231132163*^9, 3.88701223865504*^9}, {
+   3.8870125345704412`*^9, 3.8870125861104336`*^9}, {3.8870130782530203`*^9, 
+   3.8870130845098624`*^9}},
+ CellLabel->"In[10]:=",
+ CellID->9007343,ExpressionUUID->"6ceb74de-9728-44c2-ad89-73942ef275c4"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`fn$$ = 5, $CellContext`mode$$ = 
-    2, $CellContext`pt$$ = {-2, 2.}, $CellContext`rn$$ = 
+   DynamicModuleBox[{$CellContext`fn$$ = 1, $CellContext`mode$$ = 
+    1, $CellContext`pt$$ = {1, 2}, $CellContext`rn$$ = 
     3, $CellContext`seed$$ = 1, $CellContext`steps$$ = 
     20, $CellContext`\[Alpha]$$ = 0.5, $CellContext`\[Alpha]m$$ = 
     0.0001, $CellContext`\[Beta]$$ = 0.7, $CellContext`\[Beta]1$$ = 
@@ -1027,7 +1061,7 @@ Cell[BoxData[
     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`pt$$], {1, 2}, "start:"}, {-2, -2}, {2, 2}}, {
+       Hold[$CellContext`pt$$], {1, 2}, "start:"}, {-3, -3}, {3, 3}}, {
       Hold[
        Dynamic[
         Row[{
@@ -1045,8 +1079,8 @@ $CellContext`steps$$, " steps, N(0,", $CellContext`\[Epsilon]$$,
         Row[{
           Part[$CellContext`fname, $CellContext`fn$$], " function"}]]], 
       Manipulate`Dump`ThisIsNotAControl}, {{
-       Hold[$CellContext`mode$$], 1, "MODE:"}, {
-      1 -> "plot2D", 2 -> "plot3D", 3 -> "eval"}}, {
+       Hold[$CellContext`mode$$], 1, "mode:"}, {
+      1 -> "2D", 2 -> "3D", 3 -> "eval"}}, {
       Hold["hyperparameters: SGD, momentum, ADAM"], 
       Manipulate`Dump`ThisIsNotAControl}, {{
        Hold[$CellContext`\[Alpha]m$$], 0.0001, "\[Alpha] mom"}, 0, 0.01}, {{
@@ -1058,7 +1092,7 @@ $CellContext`steps$$, " steps, N(0,", $CellContext`\[Epsilon]$$,
        Hold[$CellContext`\[Eta]$$], 0.7, "\[Eta] OGR"}, 0, 1}, {{
        Hold[$CellContext`\[Beta]$$], 0.7, "\[Beta] OGR"}, 0, 1}, {{
        Hold[$CellContext`\[Gamma]$$], 0.7, "\[Gamma] OGR"}, 0, 1}}, 
-    Typeset`size$$ = {360., {179., 183.7141678377355}}, Typeset`update$$ = 0, 
+    Typeset`size$$ = {450., {229., 232.4590824127198}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
@@ -1074,77 +1108,80 @@ $CellContext`steps$$, " steps, N(0,", $CellContext`\[Epsilon]$$,
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, 
-      "Body" :> (
-       SeedRandom[$CellContext`seed$$]; $CellContext`rrn = 
-        Round[$CellContext`rn$$]; $CellContext`f = 
-        Part[$CellContext`fun, $CellContext`fn$$]; $CellContext`g = 
-        Part[$CellContext`gr, $CellContext`fn$$]; {$CellContext`ix, \
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`traj$, $CellContext`eval$}, 
+        SeedRandom[$CellContext`seed$$]; $CellContext`rrn = 
+         Round[$CellContext`rn$$]; $CellContext`f = 
+         Part[$CellContext`fun, $CellContext`fn$$]; $CellContext`g = 
+         Part[$CellContext`gr, $CellContext`fn$$]; {$CellContext`ix, \
 $CellContext`iy} = $CellContext`pt$$; 
-       Switch[$CellContext`mode$$, 1, $CellContext`traj = Table[
-            $CellContext`fndtr[$CellContext`ix, $CellContext`iy, \
+        Switch[$CellContext`mode$$, 1, $CellContext`traj$ = Table[
+             $CellContext`fndtr[$CellContext`ix, $CellContext`iy, \
 $CellContext`mt], {$CellContext`mt, $CellContext`mtn}]; Show[
-           DensityPlot[
-            
-            Log[$CellContext`f], {$CellContext`x, -$CellContext`rn$$, \
+            ContourPlot[
+             
+             Log[$CellContext`f], {$CellContext`x, -$CellContext`rn$$, \
 $CellContext`rn$$}, {$CellContext`y, -$CellContext`rn$$, $CellContext`rn$$}, 
-            ImageSize -> 400, PlotLabel -> $CellContext`labn], 
-           Graphics[{
-             Text["x", {0, 0}], Orange, 
-             Ball[{$CellContext`ix, $CellContext`iy}, 0.1], 
-             Table[{
-               Thickness[0.01], 
-               Part[$CellContext`col, $CellContext`mt], 
-               Line[
-                Part[$CellContext`traj, $CellContext`mt]]}, {$CellContext`mt, 
-               5}]}]], 
-         2, $CellContext`traj = 
-          Table[$CellContext`tr = $CellContext`fndtr[$CellContext`ix, \
+             ImageSize -> 500, PlotLabel -> $CellContext`labn], 
+            Graphics[{
+              Text[
+               Style["x", Red], {0, 0}], Orange, 
+              Ball[{$CellContext`ix, $CellContext`iy}, 0.1], 
+              Table[{
+                Thickness[0.01], 
+                Part[$CellContext`col, $CellContext`mt], 
+                Line[
+                 
+                 Part[$CellContext`traj$, $CellContext`mt]]}, \
+{$CellContext`mt, 5}]}]], 
+          2, $CellContext`traj$ = 
+           Table[$CellContext`tr = $CellContext`fndtr[$CellContext`ix, \
 $CellContext`iy, $CellContext`mt]; Transpose[
-              Append[
-               Transpose[$CellContext`tr], 
-               Table[
-                ReplaceAll[$CellContext`f, 
-                 $CellContext`sub[$CellContext`t]], {$CellContext`t, \
+               Append[
+                Transpose[$CellContext`tr], 
+                Table[
+                 ReplaceAll[$CellContext`f, 
+                  $CellContext`sub[$CellContext`t]], {$CellContext`t, \
 $CellContext`tr}]]], {$CellContext`mt, $CellContext`mtn}]; Show[
-           
-           Plot3D[$CellContext`f, {$CellContext`x, -$CellContext`rn$$, \
+            
+            Plot3D[$CellContext`f, {$CellContext`x, -$CellContext`rn$$, \
 $CellContext`rn$$}, {$CellContext`y, -$CellContext`rn$$, $CellContext`rn$$}, 
-            ImageSize -> 400, PlotLabel -> $CellContext`labn], 
-           Graphics3D[{Thick, 
-             Line[{{0, 0, 10^6}, {0, 0, 0}}], Orange, 
-             Ball[{$CellContext`ix, $CellContext`iy, 
-               ReplaceAll[$CellContext`f, 
-                $CellContext`sub[{$CellContext`ix, $CellContext`iy}]]}, 0.1], 
-             Table[{
-               Thickness[0.01], 
-               Part[$CellContext`col, $CellContext`mt], 
-               Line[
-                
-                Part[$CellContext`traj, $CellContext`mt]]}, {$CellContext`mt, \
-$CellContext`mtn}]}]], 3, $CellContext`eval = Table[
-            Sort[
-             Flatten[
-              
-              Table[$CellContext`fndtr[$CellContext`ix, $CellContext`iy, \
+             ImageSize -> 500, PlotLabel -> $CellContext`labn], 
+            Graphics3D[{Thick, 
+              Line[{{0, 0, 10^6}, {0, 0, 0}}], Orange, 
+              Ball[{$CellContext`ix, $CellContext`iy, 
+                ReplaceAll[$CellContext`f, 
+                 $CellContext`sub[{$CellContext`ix, $CellContext`iy}]]}, 0.1], 
+              Table[{
+                Thickness[0.01], 
+                Part[$CellContext`col, $CellContext`mt], 
+                Line[
+                 
+                 Part[$CellContext`traj$, $CellContext`mt]]}, \
+{$CellContext`mt, $CellContext`mtn}]}]], 3, $CellContext`eval$ = Table[
+             Sort[
+              Flatten[
+               
+               Table[$CellContext`fndtr[$CellContext`ix, $CellContext`iy, \
 $CellContext`mt]; ReplaceAll[$CellContext`f, 
-                 $CellContext`sub[$CellContext`\[Theta]]], {$CellContext`ix, \
--$CellContext`rrn, $CellContext`rrn}, {$CellContext`iy, -$CellContext`rrn, \
-$CellContext`rrn}]]], {$CellContext`mt, $CellContext`mtn}]; 
-         ListLogPlot[$CellContext`eval, PlotStyle -> $CellContext`col, 
-           PlotLabels -> $CellContext`labn, ImageSize -> 400, PlotLabel -> 
-           Column[{
-              
-              Row[{"Sorted values from ", 2 $CellContext`rrn + 1, "x", 
-                2 $CellContext`rrn + 1, 
-                " lattice after ", $CellContext`steps$$, " steps"}], 
-              "Their geometric means:", 
-              Grid[{$CellContext`labn, 
-                Exp[
-                 Map[Mean, 
-                  Log[$CellContext`eval]]]}, Frame -> All]}, Center]]]), 
-      "Specifications" :> {{{$CellContext`pt$$, {1, 2}, "start:"}, {-2, -2}, {
-         2, 2}}, 
+                  $CellContext`sub[$CellContext`\[Theta]]], {$CellContext`ix, \
+-$CellContext`rn$$, $CellContext`rn$$, 
+                 1}, {$CellContext`iy, -$CellContext`rn$$, $CellContext`rn$$, 
+                 1}]]], {$CellContext`mt, $CellContext`mtn}]; 
+          ListLogPlot[$CellContext`eval$, PlotStyle -> $CellContext`col, 
+            PlotLabels -> $CellContext`labn, ImageSize -> 500, PlotLabel -> 
+            Column[{
+               
+               Row[{"Sorted values from ", 2 $CellContext`rrn + 1, "x", 
+                 2 $CellContext`rrn + 1, 
+                 " lattice after ", $CellContext`steps$$, " steps"}], 
+               "Their geometric means:", 
+               Grid[{$CellContext`labn, 
+                 Exp[
+                  Map[Mean, 
+                   Log[$CellContext`eval$]]]}, Frame -> All]}, Center]]]], 
+      "Specifications" :> {{{$CellContext`pt$$, {1, 2}, "start:"}, {-3, -3}, {
+         3, 3}}, 
         Dynamic[
          Row[{
           "[", -$CellContext`rn$$, ",", $CellContext`rn$$, 
@@ -1159,8 +1196,9 @@ $CellContext`steps$$, " steps, N(0,", $CellContext`\[Epsilon]$$,
         Dynamic[
          Row[{
            Part[$CellContext`fname, $CellContext`fn$$], 
-           " function"}]], {{$CellContext`mode$$, 1, "MODE:"}, {
-         1 -> "plot2D", 2 -> "plot3D", 3 -> "eval"}}, Delimiter, 
+           " function"}]], {{$CellContext`mode$$, 1, "mode:"}, {
+         1 -> "2D", 2 -> "3D", 3 -> "eval"}, ControlType -> SetterBar}, 
+        Delimiter, 
         "hyperparameters: SGD, momentum, ADAM", {{$CellContext`\[Alpha]m$$, 
           0.0001, "\[Alpha] mom"}, 0, 0.01, ImageSize -> 
          Small}, {{$CellContext`\[Alpha]$$, 0.5, "\[Alpha]"}, 0, 1, ImageSize -> 
@@ -1178,7 +1216,7 @@ $CellContext`rn$$, $CellContext`\[Alpha]$$, $CellContext`\[Alpha]m$$, \
 $CellContext`\[Beta]1$$, $CellContext`\[Beta]2$$, $CellContext`\[Eta]$$, \
 $CellContext`\[Beta]$$, $CellContext`\[Gamma]$$, $CellContext`pt$$}, 
         ControlPlacement -> Left}, "DefaultOptions" :> {}],
-     ImageSizeCache->{540., {204.9206298828125, 210.0793701171875}},
+     ImageSizeCache->{630., {254.92062988281248`, 260.0793701171875}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1255,16 +1293,16 @@ $CellContext`iy$}; $CellContext`t = ($CellContext`m = ($CellContext`mg = \
               0.))))); $CellContext`dgg = ($CellContext`d\[Theta]\[Theta] = 
           1); $CellContext`m\[Theta]\[Theta] = ($CellContext`mgg = 
           0.1 IdentityMatrix[$CellContext`d]); Prepend[
-          Table[
-          Part[{$CellContext`vanillaSGD, $CellContext`momentum, \
+          
+          Table[$CellContext`p\[Theta] = $CellContext`\[Theta]; 
+           Part[{$CellContext`vanillaSGD, $CellContext`momentum, \
 $CellContext`ADAM, $CellContext`cdOGR, $CellContext`fOGR}, $CellContext`mt$][
             ReplaceAll[$CellContext`g, 
                $CellContext`sub[$CellContext`\[Theta]]] + $CellContext`noise]; 
            If[Norm[$CellContext`\[Theta]] > $CellContext`maxd, $CellContext`\
-\[Theta] = 
-             Normalize[$CellContext`\[Theta]] $CellContext`maxd]; \
-$CellContext`\[Theta], {$CellContext`i, $CellContext`steps$$}], \
-{$CellContext`ix$, $CellContext`iy$}]); $CellContext`vanillaSGD[
+\[Theta] = $CellContext`p\[Theta]]; $CellContext`\[Theta], {$CellContext`i, \
+$CellContext`steps$$}], {$CellContext`ix$, $CellContext`iy$}]); \
+$CellContext`vanillaSGD[
          Pattern[$CellContext`ng$, 
           Blank[]]] := 
        SubtractFrom[$CellContext`\[Theta], $CellContext`\[Alpha]m$$ \
@@ -1346,8 +1384,8 @@ $CellContext`ev} =
    3.8869936005780573`*^9}, {3.886993660557662*^9, 3.8869936781899414`*^9}, {
    3.886993713698711*^9, 3.886993740927434*^9}, {3.8869940764468427`*^9, 
    3.8869940997542276`*^9}, 3.886994464722034*^9, 3.8869945459622207`*^9, 
-   3.886994652475918*^9},
- CellLabel->"Out[20]=",ExpressionUUID->"7410bd37-eb25-4b6a-b841-81a50950a546"]
+   3.886994652475918*^9, 3.8870138896945744`*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"bb6ba8fb-a229-47d8-974d-83077d01dba7"]
 }, Open  ]]
 },
 WindowSize->{1142.1, 653.6999999999999},
@@ -1371,8 +1409,9 @@ CellTagsIndex->{}
 Notebook[{
 Cell[558, 20, 1211, 34, 60, "Input",ExpressionUUID->"d26b43b1-6258-4aac-a226-e3f633118636"],
 Cell[CellGroupData[{
-Cell[1794, 58, 40720, 956, 1095, "Input",ExpressionUUID->"75bdf937-e2bb-4290-8378-7757bda9235b"],
-Cell[42517, 1016, 17220, 333, 432, "Output",ExpressionUUID->"7410bd37-eb25-4b6a-b841-81a50950a546"]
+Cell[1794, 58, 42897, 990, 1112, "Input",ExpressionUUID->"6ceb74de-9728-44c2-ad89-73942ef275c4",
+ CellID->9007343],
+Cell[44694, 1050, 17468, 337, 532, "Output",ExpressionUUID->"bb6ba8fb-a229-47d8-974d-83077d01dba7"]
 }, Open  ]]
 }
 ]
