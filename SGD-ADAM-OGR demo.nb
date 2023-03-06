@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     62869,       1411]
-NotebookOptionsPosition[     62178,       1390]
-NotebookOutlinePosition[     62667,       1408]
-CellTagsIndexPosition[     62624,       1405]
+NotebookDataLength[     69718,       1567]
+NotebookOptionsPosition[     69038,       1546]
+NotebookOutlinePosition[     69515,       1564]
+CellTagsIndexPosition[     69472,       1561]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -76,6 +76,9 @@ Cell[BoxData[
       RowBox[{
        RowBox[{"{", 
         RowBox[{"ix", ",", "iy"}], "}"}], "=", "pt"}], ";", 
+      RowBox[{"\[Alpha]m", "=", 
+       RowBox[{
+        RowBox[{"Exp", "[", "l\[Alpha]m", "]"}], "+", "0."}]}], ";", 
       "\[IndentingNewLine]", 
       RowBox[{"Switch", "[", 
        RowBox[{"mode", ",", "                                    ", 
@@ -106,8 +109,16 @@ Cell[BoxData[
               RowBox[{"y", ",", 
                RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
              RowBox[{"ImageSize", "->", "500"}], ",", 
-             RowBox[{"PlotLabel", "->", "labn"}]}], "]"}], ",", 
-           "\[IndentingNewLine]", 
+             RowBox[{"PlotLabel", "->", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"steps", ",", " ", 
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\< steps\>\"", ",", "Bold"}], "]"}], ",", 
+                 "\"\< for methods: \>\"", ",", 
+                 RowBox[{"Row", "[", 
+                  RowBox[{"labn", ",", "\"\<,\>\""}], "]"}]}], "}"}], 
+               "]"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
            RowBox[{"Graphics", "[", 
             RowBox[{"{", 
              RowBox[{
@@ -167,7 +178,14 @@ Cell[BoxData[
               RowBox[{"y", ",", 
                RowBox[{"-", "rn"}], ",", "rn"}], "}"}], ",", 
              RowBox[{"ImageSize", "->", "500"}], ",", 
-             RowBox[{"PlotLabel", "->", "labn"}]}], "]"}], ",", 
+             RowBox[{"PlotLabel", "->", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                "steps", ",", " ", "\"\< steps for methods: \>\"", ",", 
+                 RowBox[{"Grid", "[", 
+                  RowBox[{"{", "labn", "}"}], "]"}]}], "}"}], "]"}]}]}], 
+            "]"}], ",", 
            RowBox[{"Graphics3D", "[", 
             RowBox[{"{", 
              RowBox[{"Thick", ",", 
@@ -224,38 +242,80 @@ Cell[BoxData[
               "]"}], "]"}], ",", 
             RowBox[{"{", 
              RowBox[{"mt", ",", "mtn"}], "}"}]}], "]"}]}], ";", 
+         RowBox[{"geo", "=", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"Map", "[", 
+            RowBox[{"Mean", ",", 
+             RowBox[{"Log", "[", "eval", "]"}]}], "]"}], "]"}]}], ";", 
          "\[IndentingNewLine]", 
-         RowBox[{"ListLogPlot", "[", 
-          RowBox[{"eval", ",", 
-           RowBox[{"PlotStyle", "->", "col"}], ",", 
-           RowBox[{"PlotLabels", "->", "labn"}], ",", 
-           RowBox[{"ImageSize", "->", "500"}], ",", 
-           RowBox[{"PlotLabel", "->", 
-            RowBox[{"Column", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Row", "[", 
+         RowBox[{"Show", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{"eval", ",", 
+              RowBox[{"PlotStyle", "->", "col"}], ",", 
+              RowBox[{"PlotLabels", "->", "labn"}], ",", 
+              RowBox[{"ImageSize", "->", "500"}], ",", 
+              RowBox[{"PlotLabel", "->", 
+               RowBox[{"Column", "[", 
+                RowBox[{
                  RowBox[{"{", 
-                  RowBox[{"\"\<Sorted values from \>\"", ",", 
-                   RowBox[{
+                  RowBox[{
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Sorted values from \>\"", ",", 
+                    RowBox[{
                     RowBox[{"2", "rrn"}], "+", "1"}], ",", "\"\<x\>\"", ",", 
-                   RowBox[{
+                    RowBox[{
                     RowBox[{"2", "rrn"}], "+", "1"}], ",", 
-                   "\"\< lattice after \>\"", ",", "steps", ",", 
-                   "\"\< steps\>\""}], "}"}], "]"}], ",", " ", 
-                "\"\<Their geometric means:\>\"", ",", 
-                RowBox[{"Grid", "[", 
+                    "\"\< lattice after \>\"", ",", "steps", ",", 
+                    "\"\< steps\>\""}], "}"}], "]"}], ",", " ", 
+                   "\"\<Their geometric means (plotted thin lines):\>\"", ",", 
+                   RowBox[{"Grid", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"labn", ",", "geo"}], "}"}], ",", 
+                    RowBox[{"Frame", "->", "All"}]}], "]"}]}], "}"}], ",", 
+                 "Center"}], "]"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"ListLogPlot", "[", 
+             RowBox[{
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{"{", 
                  RowBox[{
                   RowBox[{"{", 
-                   RowBox[{"labn", ",", 
-                    RowBox[{"Exp", "[", 
-                    RowBox[{"Map", "[", 
-                    RowBox[{"Mean", ",", 
-                    RowBox[{"Log", "[", "eval", "]"}]}], "]"}], "]"}]}], 
-                   "}"}], ",", 
-                  RowBox[{"Frame", "->", "All"}]}], "]"}]}], "}"}], ",", 
-              "Center"}], "]"}]}]}], "]"}]}]}], "]"}]}]}], "]"}], ",", 
+                   RowBox[{"0", ",", 
+                    RowBox[{"geo", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Length", "[", 
+                    RowBox[{"eval", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+                    RowBox[{"geo", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "}"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"i", ",", "mtn"}], "}"}]}], "]"}], ",", 
+              RowBox[{"Joined", "->", "True"}], ",", 
+              RowBox[{"PlotStyle", "->", 
+               RowBox[{"Table", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"Thin", ",", "c"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"c", ",", "col"}], "}"}]}], "]"}]}]}], "]"}]}], 
+           "}"}], "]"}]}]}], "]"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"mode", ",", "1", ",", "\"\<mode:\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\<2D\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<3D\>\""}], ",", 
+       RowBox[{"3", "->", "\"\<eval\>\""}]}], "}"}]}], "}"}], ",", " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"mode", " ", "of", " ", "work"}], " ", "*)"}], 
    "\[IndentingNewLine]", 
    RowBox[{"{", 
     RowBox[{
@@ -269,15 +329,6 @@ Cell[BoxData[
        RowBox[{"-", "3"}]}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{"3", ",", "3"}], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
-   RowBox[{"Dynamic", "[", 
-    RowBox[{"Row", "[", 
-     RowBox[{"{", 
-      RowBox[{"\"\<[\>\"", ",", 
-       RowBox[{"-", "rn"}], ",", "\"\<,\>\"", ",", "rn", ",", 
-       "\"\<\!\(\*SuperscriptBox[\(]\), \(2\)]\) range, \>\"", ",", "steps", 
-       ",", "\"\< steps, N(0,\>\"", ",", "\[Epsilon]", ",", 
-       "\"\<) noise\>\""}], " ", "}"}], "]"}], "]"}], ",", 
-   "\[IndentingNewLine]", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
@@ -288,6 +339,45 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"number", " ", "of", " ", "steps"}], " ", "-", " ", 
      RowBox[{"basic", " ", "to", " ", "animate"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"fname", "[", 
+        RowBox[{"[", "fn", "]"}], "]"}], ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\< function\>\"", ",", "Bold"}], "]"}], ",", 
+       "\"\< in [\>\"", ",", 
+       RowBox[{"-", "rn"}], ",", "\"\<,\>\"", ",", "rn", ",", 
+       "\"\<\!\(\*SuperscriptBox[\(]\), \(2\)]\) range\>\""}], "}"}], "]"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"fn", ",", "1", ",", "\"\<func\>\""}], "}"}], ",", 
+     RowBox[{"Range", "[", "5", "]"}]}], "}"}], ",", "        ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"function", " ", "choice"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rn", ",", "3", ",", "\"\<range\>\""}], "}"}], ",", "1", ",", 
+     "10", ",", "0.1", ",", 
+     RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "         ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"plot", " ", "range"}], ",", " ", 
+     RowBox[{
+     "also", " ", "used", " ", "in", " ", "evaluation", " ", "for", " ", 
+      "lattice"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{"\"\<N(0,\>\"", ",", "\[Epsilon]", ",", "\"\<) \>\"", ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<noise\>\"", ",", "Bold"}], "]"}], ",", 
+       "\"\< for seed = \>\"", ",", "seed"}], " ", "}"}], "]"}], "]"}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"{", 
     RowBox[{
@@ -309,57 +399,41 @@ Cell[BoxData[
      RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "      ", 
    RowBox[{"(*", " ", 
     RowBox[{"seed", " ", "for", " ", "random", " ", "noise"}], " ", "*)"}], 
-   "\[IndentingNewLine]", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"rn", ",", "3", ",", "\"\<range\>\""}], "}"}], ",", "1", ",", 
-     "10", ",", "0.1", ",", 
-     RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "         ", 
-   RowBox[{"(*", " ", 
-    RowBox[{
-     RowBox[{"plot", " ", "range"}], ",", " ", 
-     RowBox[{
-     "also", " ", "used", " ", "in", " ", "evaluation", " ", "for", " ", 
-      "lattice"}]}], " ", "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"fn", ",", "1", ",", "\"\<func\>\""}], "}"}], ",", 
-     RowBox[{"Range", "[", "5", "]"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", "Delimiter", ",", 
    RowBox[{"Dynamic", "[", 
     RowBox[{"Row", "[", 
      RowBox[{"{", 
       RowBox[{
-       RowBox[{"fname", "[", 
-        RowBox[{"[", "fn", "]"}], "]"}], ",", "\"\< function\>\""}], "}"}], 
-     "]"}], "]"}], ",", "        ", 
-   RowBox[{"(*", " ", 
-    RowBox[{"function", " ", "choice"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Hyperparameters\>\"", ",", "Bold"}], "]"}], ",", 
+       "\"\<, SGD: \[Alpha]m = \>\"", ",", "\[Alpha]m"}], "}"}], "]"}], "]"}],
+    ",", "\[IndentingNewLine]", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"mode", ",", "1", ",", "\"\<mode:\>\""}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"1", "->", "\"\<2D\>\""}], ",", 
-       RowBox[{"2", "->", "\"\<3D\>\""}], ",", 
-       RowBox[{"3", "->", "\"\<eval\>\""}]}], "}"}], ",", 
-     RowBox[{"ControlType", "\[Rule]", "SetterBar"}]}], "}"}], ",", " ", 
-   RowBox[{"(*", " ", 
-    RowBox[{"mode", " ", "of", " ", "work"}], " ", "*)"}], 
-   "\[IndentingNewLine]", "Delimiter", ",", 
-   "\"\<hyperparameters: SGD, momentum, ADAM\>\"", ",", "\[IndentingNewLine]", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"\[Alpha]m", ",", "0.0001", ",", "\"\<\[Alpha] mom\>\""}], 
-      "}"}], ",", "0", ",", "0.01", ",", 
+      RowBox[{"l\[Alpha]m", ",", 
+       RowBox[{"-", "9"}], ",", "\"\<ln(\[Alpha]m)\>\""}], "}"}], ",", 
+     RowBox[{"-", "12"}], ",", 
+     RowBox[{"-", "6"}], ",", 
      RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", " ", 
    RowBox[{"(*", " ", 
     RowBox[{
     "tiny", " ", "fixed", " ", "learning", " ", "rate", " ", "for", " ", 
      "vanilla", " ", "SGD", " ", "and", " ", "momentum"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<momentum: \[Alpha]m = \>\"", ",", "\[Alpha]m", ",", " ", 
+       "\"\<, \[Beta]1 = \>\"", ",", "\[Beta]1"}], "}"}], "]"}], "]"}], ",", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<ADAM: \[Alpha] = \>\"", ",", "\[Alpha]", ",", 
+       "\"\<, \[Beta]1 = \>\"", ",", "\[Beta]1", ",", " ", 
+       "\"\<, \[Beta]2 = \>\"", ",", "\[Beta]2"}], "}"}], "]"}], "]"}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"{", 
     RowBox[{
@@ -374,7 +448,7 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"{", 
       RowBox[{"\[Beta]1", ",", "0.8", ",", "\"\<\[Beta]1\>\""}], "}"}], ",", 
-     "0", ",", "1", ",", 
+     "0", ",", "1", ",", "0.01", ",", 
      RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "           ", 
    RowBox[{"(*", " ", 
     RowBox[{
@@ -386,18 +460,24 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"{", 
       RowBox[{"\[Beta]2", ",", "0.9", ",", "\"\<\[Beta]2\>\""}], "}"}], ",", 
-     "0", ",", "1", ",", 
+     "0", ",", "1", ",", "0.01", ",", 
      RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "           ", 
    RowBox[{"(*", " ", 
     RowBox[{
     "second", " ", "adaptation", " ", "rate", " ", "for", " ", "ADAM"}], " ", 
     "*)"}], "\[IndentingNewLine]", 
-   "\"\<step size, 2 learning rates for OGR:\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<OGR: \[Eta] = \>\"", ",", "\[Eta]", ",", " ", 
+       "\"\<, \[Beta] = \>\"", ",", "\[Beta]", ",", "\"\<, \[Gamma] = \>\"", 
+       ",", "\[Gamma]"}], "}"}], "]"}], "]"}], ",", "\[IndentingNewLine]", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"\[Eta]", ",", "0.7", ",", "\"\<\[Eta] OGR\>\""}], "}"}], ",", 
-     "0", ",", "1", ",", 
+      RowBox[{"\[Eta]", ",", "0.7", ",", "\"\<\[Eta]\>\""}], "}"}], ",", "0", 
+     ",", "1", ",", "0.01", ",", 
      RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "          ", 
    RowBox[{"(*", " ", 
     RowBox[{
@@ -413,8 +493,8 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"\[Beta]", ",", "0.7", ",", "\"\<\[Beta] OGR\>\""}], "}"}], ",",
-      "0", ",", "1", ",", 
+      RowBox[{"\[Beta]", ",", "0.7", ",", "\"\<\[Beta]\>\""}], "}"}], ",", 
+     "0", ",", "1", ",", "0.01", ",", 
      RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "          ", 
    RowBox[{"(*", " ", 
     RowBox[{
@@ -423,8 +503,8 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"\[Gamma]", ",", "0.7", ",", "\"\<\[Gamma] OGR\>\""}], "}"}], 
-     ",", "0", ",", "1", ",", 
+      RowBox[{"\[Gamma]", ",", "0.7", ",", "\"\<\[Gamma]\>\""}], "}"}], ",", 
+     "0", ",", "1", ",", "0.01", ",", 
      RowBox[{"ImageSize", "->", "Small"}]}], "}"}], ",", "          ", 
    RowBox[{"(*", " ", 
     RowBox[{
@@ -922,7 +1002,7 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{
      "steps", ",", "\[Epsilon]", ",", "seed", ",", "fn", ",", "mode", ",", 
-      "rn", ",", "\[Alpha]", ",", "\[Alpha]m", ",", "\[Beta]1", ",", 
+      "rn", ",", "\[Alpha]", ",", "l\[Alpha]m", ",", "\[Beta]1", ",", 
       "\[Beta]2", ",", "\[Eta]", ",", "\[Beta]", ",", "\[Gamma]", ",", "pt"}],
       "}"}]}], ",", 
    RowBox[{"ControlPlacement", "->", "Left"}]}], "]"}]], "Input",
@@ -1044,66 +1124,113 @@ Cell[BoxData[
    3.8870109588090496`*^9}, {3.8870115756728363`*^9, 3.8870115761422787`*^9}, 
    3.887012200104436*^9, {3.887012231132163*^9, 3.88701223865504*^9}, {
    3.8870125345704412`*^9, 3.8870125861104336`*^9}, {3.8870130782530203`*^9, 
-   3.8870130845098624`*^9}},
- CellLabel->"In[10]:=",
- CellID->9007343,ExpressionUUID->"6ceb74de-9728-44c2-ad89-73942ef275c4"],
+   3.8870130845098624`*^9}, {3.887076522421672*^9, 3.887076559009129*^9}, {
+   3.8870767336777554`*^9, 3.887076740653417*^9}, {3.8870767876638575`*^9, 
+   3.8870767917265406`*^9}, {3.887076828701547*^9, 3.887076967926403*^9}, {
+   3.8870770210756793`*^9, 3.887077026357815*^9}, {3.8870771353226542`*^9, 
+   3.8870771630644045`*^9}, {3.8870771975288363`*^9, 3.887077224657218*^9}, {
+   3.887077305492369*^9, 3.887077335052552*^9}, {3.887077441001233*^9, 
+   3.887077561832921*^9}, {3.887077808953005*^9, 3.8870778199035783`*^9}, {
+   3.8870778575078564`*^9, 3.8870778761165457`*^9}, {3.8870779109962*^9, 
+   3.88707791772427*^9}, {3.8870779491473136`*^9, 3.8870780537995663`*^9}, {
+   3.8870780856688337`*^9, 3.887078097900195*^9}, {3.8870781349349003`*^9, 
+   3.8870781508792515`*^9}, {3.8870781914259996`*^9, 3.887078195378769*^9}, {
+   3.887078255044894*^9, 3.8870783093405867`*^9}, {3.8870783456035285`*^9, 
+   3.8870783536387177`*^9}, 3.8870783875149603`*^9, {3.8870784483188443`*^9, 
+   3.8870784684835606`*^9}, {3.8870785177631617`*^9, 
+   3.8870785245404053`*^9}, {3.8870785689167476`*^9, 3.887078586299879*^9}, 
+   3.887078638375079*^9, {3.88707874652176*^9, 3.8870787466144314`*^9}, {
+   3.887078898101696*^9, 3.8870789219724293`*^9}, {3.887079008575113*^9, 
+   3.8870790094988737`*^9}, {3.887079402005105*^9, 3.887079447339883*^9}, {
+   3.887079521616929*^9, 3.887079544444474*^9}, {3.887079576311787*^9, 
+   3.887079617605253*^9}, {3.8870817021307*^9, 3.8870817358915415`*^9}, {
+   3.8870817884343004`*^9, 3.887081804448576*^9}, {3.8870818426412897`*^9, 
+   3.887081852615437*^9}, {3.88708197394022*^9, 3.8870819805183744`*^9}, {
+   3.8870820717938995`*^9, 3.887082081319111*^9}, {3.887082113223161*^9, 
+   3.8870821133044124`*^9}, {3.8870821854498005`*^9, 3.8870821855336494`*^9}},
+ CellLabel->"In[1]:=",
+ CellID->9007343,ExpressionUUID->"f99d33a0-4a70-4846-9362-9411e232f4ff"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`fn$$ = 1, $CellContext`mode$$ = 
+   DynamicModuleBox[{$CellContext`fn$$ = 
+    1, $CellContext`l\[Alpha]m$$ = -9, $CellContext`mode$$ = 
     1, $CellContext`pt$$ = {1, 2}, $CellContext`rn$$ = 
     3, $CellContext`seed$$ = 1, $CellContext`steps$$ = 
-    20, $CellContext`\[Alpha]$$ = 0.5, $CellContext`\[Alpha]m$$ = 
-    0.0001, $CellContext`\[Beta]$$ = 0.7, $CellContext`\[Beta]1$$ = 
-    0.8, $CellContext`\[Beta]2$$ = 0.9, $CellContext`\[Gamma]$$ = 
-    0.7, $CellContext`\[Epsilon]$$ = 0.5, $CellContext`\[Eta]$$ = 0.7, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`pt$$], {1, 2}, "start:"}, {-3, -3}, {3, 3}}, {
-      Hold[
-       Dynamic[
-        Row[{
-         "[", -$CellContext`rn$$, ",", $CellContext`rn$$, 
-          "\!\(\*SuperscriptBox[\(]\), \(2\)]\) range, ", \
-$CellContext`steps$$, " steps, N(0,", $CellContext`\[Epsilon]$$, 
-          ") noise"}]]], Manipulate`Dump`ThisIsNotAControl}, {{
-       Hold[$CellContext`steps$$], 20, "steps"}, 1, 50, 1}, {{
-       Hold[$CellContext`\[Epsilon]$$], 0.5, "noise"}, 0.0001, 10}, {{
-       Hold[$CellContext`seed$$], 1, "seed"}, 1, 100, 1}, {{
-       Hold[$CellContext`rn$$], 3, "range"}, 1, 10, 0.1}, {{
-       Hold[$CellContext`fn$$], 1, "func"}, {1, 2, 3, 4, 5}}, {
-      Hold[
-       Dynamic[
-        Row[{
-          Part[$CellContext`fname, $CellContext`fn$$], " function"}]]], 
-      Manipulate`Dump`ThisIsNotAControl}, {{
+    20, $CellContext`\[Alpha]$$ = 0.5, $CellContext`\[Beta]$$ = 
+    0.7, $CellContext`\[Beta]1$$ = 0.8, $CellContext`\[Beta]2$$ = 
+    0.9, $CellContext`\[Gamma]$$ = 0.7, $CellContext`\[Epsilon]$$ = 
+    0.5, $CellContext`\[Eta]$$ = 0.7, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`mode$$], 1, "mode:"}, {
-      1 -> "2D", 2 -> "3D", 3 -> "eval"}}, {
-      Hold["hyperparameters: SGD, momentum, ADAM"], 
+      1 -> "2D", 2 -> "3D", 3 -> "eval"}}, {{
+       Hold[$CellContext`pt$$], {1, 2}, "start:"}, {-3, -3}, {3, 3}}, {{
+       Hold[$CellContext`steps$$], 20, "steps"}, 1, 50, 1}, {
+      Hold[
+       Dynamic[
+        Row[{
+          Part[$CellContext`fname, $CellContext`fn$$], 
+          Style[" function", Bold], " in [", -$CellContext`rn$$, 
+          ",", $CellContext`rn$$, 
+          "\!\(\*SuperscriptBox[\(]\), \(2\)]\) range"}]]], 
       Manipulate`Dump`ThisIsNotAControl}, {{
-       Hold[$CellContext`\[Alpha]m$$], 0.0001, "\[Alpha] mom"}, 0, 0.01}, {{
+       Hold[$CellContext`fn$$], 1, "func"}, {1, 2, 3, 4, 5}}, {{
+       Hold[$CellContext`rn$$], 3, "range"}, 1, 10, 0.1}, {
+      Hold[
+       Dynamic[
+        Row[{"N(0,", $CellContext`\[Epsilon]$$, ") ", 
+          Style["noise", Bold], " for seed = ", $CellContext`seed$$}]]], 
+      Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`\[Epsilon]$$], 0.5, "noise"}, 0.0001, 10}, {{
+       Hold[$CellContext`seed$$], 1, "seed"}, 1, 100, 1}, {
+      Hold[
+       Dynamic[
+        Row[{
+          Style["Hyperparameters", Bold], 
+          ", SGD: \[Alpha]m = ", $CellContext`\[Alpha]m}]]], 
+      Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`l\[Alpha]m$$], -9, "ln(\[Alpha]m)"}, -12, -6}, {
+      Hold[
+       Dynamic[
+        Row[{
+         "momentum: \[Alpha]m = ", $CellContext`\[Alpha]m, 
+          ", \[Beta]1 = ", $CellContext`\[Beta]1$$}]]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Dynamic[
+        Row[{
+         "ADAM: \[Alpha] = ", $CellContext`\[Alpha]$$, 
+          ", \[Beta]1 = ", $CellContext`\[Beta]1$$, 
+          ", \[Beta]2 = ", $CellContext`\[Beta]2$$}]]], 
+      Manipulate`Dump`ThisIsNotAControl}, {{
        Hold[$CellContext`\[Alpha]$$], 0.5, "\[Alpha]"}, 0, 1}, {{
-       Hold[$CellContext`\[Beta]1$$], 0.8, "\[Beta]1"}, 0, 1}, {{
-       Hold[$CellContext`\[Beta]2$$], 0.9, "\[Beta]2"}, 0, 1}, {
-      Hold["step size, 2 learning rates for OGR:"], 
+       Hold[$CellContext`\[Beta]1$$], 0.8, "\[Beta]1"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Beta]2$$], 0.9, "\[Beta]2"}, 0, 1, 0.01}, {
+      Hold[
+       Dynamic[
+        Row[{
+         "OGR: \[Eta] = ", $CellContext`\[Eta]$$, 
+          ", \[Beta] = ", $CellContext`\[Beta]$$, 
+          ", \[Gamma] = ", $CellContext`\[Gamma]$$}]]], 
       Manipulate`Dump`ThisIsNotAControl}, {{
-       Hold[$CellContext`\[Eta]$$], 0.7, "\[Eta] OGR"}, 0, 1}, {{
-       Hold[$CellContext`\[Beta]$$], 0.7, "\[Beta] OGR"}, 0, 1}, {{
-       Hold[$CellContext`\[Gamma]$$], 0.7, "\[Gamma] OGR"}, 0, 1}}, 
+       Hold[$CellContext`\[Eta]$$], 0.7, "\[Eta]"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Beta]$$], 0.7, "\[Beta]"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Gamma]$$], 0.7, "\[Gamma]"}, 0, 1, 0.01}}, 
     Typeset`size$$ = {450., {229., 232.4590824127198}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
-      "Variables" :> {$CellContext`fn$$ = 1, $CellContext`mode$$ = 
+      "Variables" :> {$CellContext`fn$$ = 
+        1, $CellContext`l\[Alpha]m$$ = -9, $CellContext`mode$$ = 
         1, $CellContext`pt$$ = {1, 2}, $CellContext`rn$$ = 
         3, $CellContext`seed$$ = 1, $CellContext`steps$$ = 
-        20, $CellContext`\[Alpha]$$ = 0.5, $CellContext`\[Alpha]m$$ = 
-        0.0001, $CellContext`\[Beta]$$ = 0.7, $CellContext`\[Beta]1$$ = 
-        0.8, $CellContext`\[Beta]2$$ = 0.9, $CellContext`\[Gamma]$$ = 
-        0.7, $CellContext`\[Epsilon]$$ = 0.5, $CellContext`\[Eta]$$ = 0.7}, 
-      "ControllerVariables" :> {}, 
+        20, $CellContext`\[Alpha]$$ = 0.5, $CellContext`\[Beta]$$ = 
+        0.7, $CellContext`\[Beta]1$$ = 0.8, $CellContext`\[Beta]2$$ = 
+        0.9, $CellContext`\[Gamma]$$ = 0.7, $CellContext`\[Epsilon]$$ = 
+        0.5, $CellContext`\[Eta]$$ = 0.7}, "ControllerVariables" :> {}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -1114,7 +1241,8 @@ $CellContext`steps$$, " steps, N(0,", $CellContext`\[Epsilon]$$,
          Round[$CellContext`rn$$]; $CellContext`f = 
          Part[$CellContext`fun, $CellContext`fn$$]; $CellContext`g = 
          Part[$CellContext`gr, $CellContext`fn$$]; {$CellContext`ix, \
-$CellContext`iy} = $CellContext`pt$$; 
+$CellContext`iy} = $CellContext`pt$$; $CellContext`\[Alpha]m = 
+         Exp[$CellContext`l\[Alpha]m$$] + 0.; 
         Switch[$CellContext`mode$$, 1, $CellContext`traj$ = Table[
              $CellContext`fndtr[$CellContext`ix, $CellContext`iy, \
 $CellContext`mt], {$CellContext`mt, $CellContext`mtn}]; Show[
@@ -1122,7 +1250,9 @@ $CellContext`mt], {$CellContext`mt, $CellContext`mtn}]; Show[
              
              Log[$CellContext`f], {$CellContext`x, -$CellContext`rn$$, \
 $CellContext`rn$$}, {$CellContext`y, -$CellContext`rn$$, $CellContext`rn$$}, 
-             ImageSize -> 500, PlotLabel -> $CellContext`labn], 
+             ImageSize -> 500, PlotLabel -> Row[{$CellContext`steps$$, 
+                Style[" steps", Bold], " for methods: ", 
+                Row[$CellContext`labn, ","]}]], 
             Graphics[{
               Text[
                Style["x", Red], {0, 0}], Orange, 
@@ -1146,7 +1276,9 @@ $CellContext`tr}]]], {$CellContext`mt, $CellContext`mtn}]; Show[
             
             Plot3D[$CellContext`f, {$CellContext`x, -$CellContext`rn$$, \
 $CellContext`rn$$}, {$CellContext`y, -$CellContext`rn$$, $CellContext`rn$$}, 
-             ImageSize -> 500, PlotLabel -> $CellContext`labn], 
+             ImageSize -> 500, PlotLabel -> 
+             Row[{$CellContext`steps$$, " steps for methods: ", 
+                Grid[{$CellContext`labn}]}]], 
             Graphics3D[{Thick, 
               Line[{{0, 0, 10^6}, {0, 0, 0}}], Orange, 
               Ball[{$CellContext`ix, $CellContext`iy, 
@@ -1167,56 +1299,86 @@ $CellContext`mt]; ReplaceAll[$CellContext`f,
                   $CellContext`sub[$CellContext`\[Theta]]], {$CellContext`ix, \
 -$CellContext`rn$$, $CellContext`rn$$, 
                  1}, {$CellContext`iy, -$CellContext`rn$$, $CellContext`rn$$, 
-                 1}]]], {$CellContext`mt, $CellContext`mtn}]; 
-          ListLogPlot[$CellContext`eval$, PlotStyle -> $CellContext`col, 
-            PlotLabels -> $CellContext`labn, ImageSize -> 500, PlotLabel -> 
-            Column[{
-               
-               Row[{"Sorted values from ", 2 $CellContext`rrn + 1, "x", 
-                 2 $CellContext`rrn + 1, 
-                 " lattice after ", $CellContext`steps$$, " steps"}], 
-               "Their geometric means:", 
-               Grid[{$CellContext`labn, 
-                 Exp[
-                  Map[Mean, 
-                   Log[$CellContext`eval$]]]}, Frame -> All]}, Center]]]], 
-      "Specifications" :> {{{$CellContext`pt$$, {1, 2}, "start:"}, {-3, -3}, {
-         3, 3}}, 
-        Dynamic[
-         Row[{
-          "[", -$CellContext`rn$$, ",", $CellContext`rn$$, 
-           "\!\(\*SuperscriptBox[\(]\), \(2\)]\) range, ", \
-$CellContext`steps$$, " steps, N(0,", $CellContext`\[Epsilon]$$, 
-           ") noise"}]], {{$CellContext`steps$$, 20, "steps"}, 1, 50, 1, 
-         ImageSize -> Small}, {{$CellContext`\[Epsilon]$$, 0.5, "noise"}, 
-         0.0001, 10, ImageSize -> Small}, {{$CellContext`seed$$, 1, "seed"}, 
-         1, 100, 1, ImageSize -> Small}, {{$CellContext`rn$$, 3, "range"}, 1, 
-         10, 0.1, ImageSize -> Small}, {{$CellContext`fn$$, 1, "func"}, {1, 2,
-          3, 4, 5}}, 
+                 1}]]], {$CellContext`mt, $CellContext`mtn}]; \
+$CellContext`geo = Exp[
+             Map[Mean, 
+              Log[$CellContext`eval$]]]; Show[{
+             
+             ListLogPlot[$CellContext`eval$, PlotStyle -> $CellContext`col, 
+              PlotLabels -> $CellContext`labn, ImageSize -> 500, PlotLabel -> 
+              Column[{
+                 
+                 Row[{"Sorted values from ", 2 $CellContext`rrn + 1, "x", 
+                   2 $CellContext`rrn + 1, 
+                   " lattice after ", $CellContext`steps$$, " steps"}], 
+                 "Their geometric means (plotted thin lines):", 
+                 Grid[{$CellContext`labn, $CellContext`geo}, Frame -> All]}, 
+                Center]], 
+             ListLogPlot[
+              Table[{{0, 
+                 Part[$CellContext`geo, $CellContext`i]}, {
+                 Length[
+                  Part[$CellContext`eval$, 1]], 
+                 
+                 Part[$CellContext`geo, $CellContext`i]}}, {$CellContext`i, \
+$CellContext`mtn}], Joined -> True, PlotStyle -> 
+              Table[{Thin, $CellContext`c}, {$CellContext`c, \
+$CellContext`col}]]}]]], 
+      "Specifications" :> {{{$CellContext`mode$$, 1, "mode:"}, {
+         1 -> "2D", 2 -> "3D", 3 -> "eval"}}, {{$CellContext`pt$$, {1, 2}, 
+          "start:"}, {-3, -3}, {3, 3}}, {{$CellContext`steps$$, 20, "steps"}, 
+         1, 50, 1, ImageSize -> Small}, 
         Dynamic[
          Row[{
            Part[$CellContext`fname, $CellContext`fn$$], 
-           " function"}]], {{$CellContext`mode$$, 1, "mode:"}, {
-         1 -> "2D", 2 -> "3D", 3 -> "eval"}, ControlType -> SetterBar}, 
-        Delimiter, 
-        "hyperparameters: SGD, momentum, ADAM", {{$CellContext`\[Alpha]m$$, 
-          0.0001, "\[Alpha] mom"}, 0, 0.01, ImageSize -> 
-         Small}, {{$CellContext`\[Alpha]$$, 0.5, "\[Alpha]"}, 0, 1, ImageSize -> 
-         Small}, {{$CellContext`\[Beta]1$$, 0.8, "\[Beta]1"}, 0, 1, ImageSize -> 
-         Small}, {{$CellContext`\[Beta]2$$, 0.9, "\[Beta]2"}, 0, 1, ImageSize -> 
-         Small}, "step size, 2 learning rates for OGR:", \
-{{$CellContext`\[Eta]$$, 0.7, "\[Eta] OGR"}, 0, 1, ImageSize -> 
-         Small}, {{$CellContext`\[Beta]$$, 0.7, "\[Beta] OGR"}, 0, 1, 
-         ImageSize -> Small}, {{$CellContext`\[Gamma]$$, 0.7, "\[Gamma] OGR"},
-          0, 1, ImageSize -> Small}}, 
+           Style[" function", Bold], " in [", -$CellContext`rn$$, 
+           ",", $CellContext`rn$$, 
+           "\!\(\*SuperscriptBox[\(]\), \(2\)]\) range"}]], \
+{{$CellContext`fn$$, 1, "func"}, {1, 2, 3, 4, 
+         5}}, {{$CellContext`rn$$, 3, "range"}, 1, 10, 0.1, ImageSize -> 
+         Small}, 
+        Dynamic[
+         Row[{"N(0,", $CellContext`\[Epsilon]$$, ") ", 
+           Style["noise", Bold], 
+           " for seed = ", $CellContext`seed$$}]], \
+{{$CellContext`\[Epsilon]$$, 0.5, "noise"}, 0.0001, 10, ImageSize -> 
+         Small}, {{$CellContext`seed$$, 1, "seed"}, 1, 100, 1, ImageSize -> 
+         Small}, Delimiter, 
+        Dynamic[
+         Row[{
+           Style["Hyperparameters", Bold], 
+           ", SGD: \[Alpha]m = ", $CellContext`\[Alpha]m}]], {{$CellContext`l\
+\[Alpha]m$$, -9, "ln(\[Alpha]m)"}, -12, -6, ImageSize -> Small}, 
+        Dynamic[
+         Row[{
+          "momentum: \[Alpha]m = ", $CellContext`\[Alpha]m, 
+           ", \[Beta]1 = ", $CellContext`\[Beta]1$$}]], 
+        Dynamic[
+         Row[{
+          "ADAM: \[Alpha] = ", $CellContext`\[Alpha]$$, 
+           ", \[Beta]1 = ", $CellContext`\[Beta]1$$, 
+           ", \[Beta]2 = ", $CellContext`\[Beta]2$$}]], {{$CellContext`\
+\[Alpha]$$, 0.5, "\[Alpha]"}, 0, 1, ImageSize -> 
+         Small}, {{$CellContext`\[Beta]1$$, 0.8, "\[Beta]1"}, 0, 1, 0.01, 
+         ImageSize -> Small}, {{$CellContext`\[Beta]2$$, 0.9, "\[Beta]2"}, 0, 
+         1, 0.01, ImageSize -> Small}, 
+        Dynamic[
+         Row[{
+          "OGR: \[Eta] = ", $CellContext`\[Eta]$$, 
+           ", \[Beta] = ", $CellContext`\[Beta]$$, 
+           ", \[Gamma] = ", $CellContext`\[Gamma]$$}]], \
+{{$CellContext`\[Eta]$$, 0.7, "\[Eta]"}, 0, 1, 0.01, ImageSize -> 
+         Small}, {{$CellContext`\[Beta]$$, 0.7, "\[Beta]"}, 0, 1, 0.01, 
+         ImageSize -> Small}, {{$CellContext`\[Gamma]$$, 0.7, "\[Gamma]"}, 0, 
+         1, 0.01, ImageSize -> Small}}, 
       "Options" :> {
        TrackedSymbols :> {$CellContext`steps$$, $CellContext`\[Epsilon]$$, \
 $CellContext`seed$$, $CellContext`fn$$, $CellContext`mode$$, \
-$CellContext`rn$$, $CellContext`\[Alpha]$$, $CellContext`\[Alpha]m$$, \
+$CellContext`rn$$, $CellContext`\[Alpha]$$, $CellContext`l\[Alpha]m$$, \
 $CellContext`\[Beta]1$$, $CellContext`\[Beta]2$$, $CellContext`\[Eta]$$, \
 $CellContext`\[Beta]$$, $CellContext`\[Gamma]$$, $CellContext`pt$$}, 
         ControlPlacement -> Left}, "DefaultOptions" :> {}],
-     ImageSizeCache->{630., {254.92062988281248`, 260.0793701171875}},
+     ImageSizeCache->{628., {254.92062988281248`, 260.0793701171875}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1303,15 +1465,15 @@ $CellContext`ADAM, $CellContext`cdOGR, $CellContext`fOGR}, $CellContext`mt$][
 \[Theta] = $CellContext`p\[Theta]]; $CellContext`\[Theta], {$CellContext`i, \
 $CellContext`steps$$}], {$CellContext`ix$, $CellContext`iy$}]); \
 $CellContext`vanillaSGD[
-         Pattern[$CellContext`ng$, 
+         Pattern[$CellContext`ng, 
           Blank[]]] := 
-       SubtractFrom[$CellContext`\[Theta], $CellContext`\[Alpha]m$$ \
-$CellContext`ng$]; $CellContext`momentum[
+       SubtractFrom[$CellContext`\[Theta], $CellContext`\[Alpha]m \
+$CellContext`ng]; $CellContext`momentum[
          Pattern[$CellContext`ng$, 
           Blank[]]] := (
         AddTo[$CellContext`m, $CellContext`\[Beta]1$$ ($CellContext`ng$ - \
 $CellContext`m)]; 
-        SubtractFrom[$CellContext`\[Theta], $CellContext`\[Alpha]m$$ \
+        SubtractFrom[$CellContext`\[Theta], $CellContext`\[Alpha]m \
 $CellContext`ng$]); $CellContext`ADAM[
          Pattern[$CellContext`ng$, 
           Blank[]]] := (
@@ -1378,17 +1540,11 @@ $CellContext`ev} =
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{
-  3.8869933033599386`*^9, 3.8869933895752716`*^9, 3.886993429816563*^9, {
-   3.8869934896576276`*^9, 3.886993540441174*^9}, {3.886993573007807*^9, 
-   3.8869936005780573`*^9}, {3.886993660557662*^9, 3.8869936781899414`*^9}, {
-   3.886993713698711*^9, 3.886993740927434*^9}, {3.8869940764468427`*^9, 
-   3.8869940997542276`*^9}, 3.886994464722034*^9, 3.8869945459622207`*^9, 
-   3.886994652475918*^9, 3.8870138896945744`*^9},
- CellLabel->"Out[10]=",ExpressionUUID->"bb6ba8fb-a229-47d8-974d-83077d01dba7"]
+ CellChangeTimes->{3.8870822839259853`*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"c683a0df-bdae-4b3e-8b00-b7b6c1bd7a4a"]
 }, Open  ]]
 },
-WindowSize->{1142.1, 653.6999999999999},
+WindowSize->{1142.1, 648.9},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 TaggingRules-><|"TryRealOnly" -> False|>,
 Magnification:>0.9 Inherited,
@@ -1409,9 +1565,9 @@ CellTagsIndex->{}
 Notebook[{
 Cell[558, 20, 1211, 34, 60, "Input",ExpressionUUID->"d26b43b1-6258-4aac-a226-e3f633118636"],
 Cell[CellGroupData[{
-Cell[1794, 58, 42897, 990, 1112, "Input",ExpressionUUID->"6ceb74de-9728-44c2-ad89-73942ef275c4",
+Cell[1794, 58, 47998, 1093, 1215, "Input",ExpressionUUID->"f99d33a0-4a70-4846-9362-9411e232f4ff",
  CellID->9007343],
-Cell[44694, 1050, 17468, 337, 532, "Output",ExpressionUUID->"bb6ba8fb-a229-47d8-974d-83077d01dba7"]
+Cell[49795, 1153, 19227, 390, 532, "Output",ExpressionUUID->"c683a0df-bdae-4b3e-8b00-b7b6c1bd7a4a"]
 }, Open  ]]
 }
 ]
