@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     75972,       1691]
-NotebookOptionsPosition[     75292,       1670]
-NotebookOutlinePosition[     75769,       1688]
-CellTagsIndexPosition[     75726,       1685]
+NotebookDataLength[     82661,       1834]
+NotebookOptionsPosition[     81979,       1813]
+NotebookOutlinePosition[     82456,       1831]
+CellTagsIndexPosition[     82413,       1828]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -79,7 +79,8 @@ Cell[BoxData[
       RowBox[{"\[Alpha]m", "=", 
        RowBox[{
         RowBox[{"Exp", "[", "l\[Alpha]m", "]"}], "+", "0."}]}], ";", 
-      "\[IndentingNewLine]", 
+      RowBox[{"hst", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
       RowBox[{"Switch", "[", 
        RowBox[{"mode", ",", "                                    ", 
         RowBox[{"(*", " ", 
@@ -516,7 +517,7 @@ Cell[BoxData[
       RowBox[{
        RowBox[{"epsilon", "=", 
         RowBox[{"10", "^", 
-         RowBox[{"-", "5"}]}]}], ";", " ", 
+         RowBox[{"-", "4"}]}]}], ";", " ", 
        RowBox[{"cut", "=", "10"}], ";", 
        "                                       ", 
        RowBox[{"(*", " ", 
@@ -728,8 +729,11 @@ Cell[BoxData[
           RowBox[{
            RowBox[{"Transpose", "[", "ev", "]"}], ".", 
            RowBox[{"DiagonalMatrix", "[", 
-            RowBox[{"eh", "[", "e", "]"}], "]"}], ".", "ev"}]}], ")"}]}], ";",
-        "\[IndentingNewLine]", 
+            RowBox[{"eh", "[", "e", "]"}], "]"}], ".", "ev"}]}], ")"}]}], ";", 
+       RowBox[{
+        RowBox[{"s", "[", "M_", "]"}], ":=", 
+        RowBox[{"M", "+", 
+         RowBox[{"Transpose", "[", "M", "]"}]}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"noise", ":=", 
         RowBox[{"RandomReal", "[", 
          RowBox[{
@@ -755,10 +759,10 @@ Cell[BoxData[
               RowBox[{"vv", "=", 
                RowBox[{"mg\[Theta]", "=", "0."}]}]}]}]}]}], ";", 
           RowBox[{"dgg", "=", 
-           RowBox[{"d\[Theta]\[Theta]", "=", "\[Epsilon]"}]}], ";", 
+           RowBox[{"d\[Theta]\[Theta]", "=", "epsilon"}]}], ";", 
           RowBox[{"m\[Theta]\[Theta]", "=", 
            RowBox[{"mgg", "=", 
-            RowBox[{"\[Epsilon]", "*", 
+            RowBox[{"epsilon", "*", 
              RowBox[{"IdentityMatrix", "[", "d", "]"}]}]}]}], ";", 
           "\[IndentingNewLine]", 
           RowBox[{"Prepend", "[", 
@@ -772,7 +776,7 @@ Cell[BoxData[
                  RowBox[{"{", 
                   RowBox[{
                   "SGD", ",", "momentum", ",", "ADAM", ",", "cdOGR", ",", 
-                   "fOGR", ",", "cfOGR"}], "}"}], "[", 
+                   "fOGR", ",", "cfOGR1"}], "}"}], "[", 
                  RowBox[{"[", "mt", "]"}], "]"}], "[", 
                 RowBox[{
                  RowBox[{"(", 
@@ -1054,17 +1058,108 @@ Cell[BoxData[
            RowBox[{"Transpose", "[", "ev", "]"}], ".", 
            RowBox[{"DiagonalMatrix", "[", 
             RowBox[{"Sqrt", "[", 
-             RowBox[{
-              RowBox[{"Diagonal", "[", 
-               RowBox[{"ev", ".", "m\[Theta]\[Theta]", ".", 
-                RowBox[{"Transpose", "[", "ev", "]"}]}], "]"}], "/", 
-              RowBox[{"(", 
-               RowBox[{"e", "+", "\[Epsilon]"}], ")"}]}], "]"}], "]"}], ".", 
-           "ev"}]}], ";", " ", "\[IndentingNewLine]", 
+             RowBox[{"Abs", "[", 
+              RowBox[{
+               RowBox[{"Diagonal", "[", 
+                RowBox[{"h", "=", 
+                 RowBox[{"ev", ".", "m\[Theta]\[Theta]", ".", 
+                  RowBox[{"Transpose", "[", "ev", "]"}]}]}], "]"}], "/", 
+               RowBox[{"(", 
+                RowBox[{"e", "+", "epsilon"}], ")"}]}], "]"}], "]"}], "]"}], 
+           ".", "ev"}]}], ";", " ", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"hst", ",", "h"}], "]"}], ";", "\[IndentingNewLine]", 
          RowBox[{"\[Theta]", "-=", 
           RowBox[{"\[Eta]", "*", 
-           RowBox[{"piH", ".", "m"}]}]}]}], ")"}]}], ";"}], 
-     "                        ", 
+           RowBox[{"piH", ".", "m"}]}]}]}], ")"}]}], ";", 
+      "                        ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Newton", ",", " ", 
+        RowBox[{
+         RowBox[{"1", "/"}], "|", 
+         RowBox[{
+          RowBox[{"~", "eigenvalues"}], " ", "of", " ", 
+          RowBox[{"pH", ":", " ", 
+           RowBox[{
+            RowBox[{"predicted", " ", "Hessian"}], "|"}]}]}]}]}], " ", "*)"}],
+       "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"cfOGR1", "[", "ng_", "]"}], ":=", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"m", "+=", 
+          RowBox[{"\[Gamma]", 
+           RowBox[{"(", 
+            RowBox[{"ng", "-", "m"}], ")"}]}]}], ";", 
+         "                                                                    \
+               ", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+           RowBox[{"full", " ", "OGR"}], " ", "-", " ", 
+           RowBox[{"full", " ", "Hessian"}]}], " ", "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"m\[Theta]", "+=", 
+          RowBox[{"\[Beta]", 
+           RowBox[{"(", 
+            RowBox[{"\[Theta]", "-", "m\[Theta]"}], ")"}]}]}], ";", 
+         RowBox[{"m\[Theta]\[Theta]", "+=", 
+          RowBox[{"\[Beta]", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"KroneckerProduct", "[", 
+              RowBox[{
+               RowBox[{"\[Theta]", "-", "m\[Theta]"}], ",", 
+               RowBox[{"\[Theta]", "-", "m\[Theta]"}]}], "]"}], "-", 
+             "m\[Theta]\[Theta]"}], ")"}]}]}], ";", "   ", 
+         RowBox[{"(*", " ", 
+          RowBox[{"update", " ", "averages"}], " ", "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"mg", "+=", 
+          RowBox[{"\[Beta]", 
+           RowBox[{"(", 
+            RowBox[{"ng", "-", "mg"}], ")"}]}]}], ";", 
+         RowBox[{"mgg", "+=", 
+          RowBox[{"\[Beta]", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"KroneckerProduct", "[", 
+              RowBox[{
+               RowBox[{"ng", "-", "mg"}], ",", 
+               RowBox[{"ng", "-", "mg"}]}], "]"}], "-", "mgg"}], ")"}]}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"\[Sigma]\[Theta]", "=", 
+          RowBox[{"MatrixFunction", "[", 
+           RowBox[{"Sqrt", ",", "m\[Theta]\[Theta]"}], "]"}]}], ";", 
+         RowBox[{"\[Sigma]g", "=", 
+          RowBox[{"MatrixFunction", "[", 
+           RowBox[{"Sqrt", ",", "mgg"}], "]"}]}], ";", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"e", ",", "ev"}], "}"}], "=", 
+          RowBox[{"Eigensystem", "[", "m\[Theta]\[Theta]", "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"pH", "=", 
+          RowBox[{
+           RowBox[{"Transpose", "[", "ev", "]"}], ".", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"ev", ".", 
+               RowBox[{"s", "[", 
+                RowBox[{"\[Sigma]\[Theta]", ".", "\[Sigma]g"}], "]"}], ".", 
+               RowBox[{"Transpose", "[", "ev", "]"}]}], ")"}], "/", 
+             RowBox[{"s", "[", 
+              RowBox[{"Table", "[", 
+               RowBox[{"e", ",", "d"}], "]"}], "]"}]}], ")"}], ".", "ev"}]}], 
+         ";", "     ", 
+         RowBox[{"(*", " ", 
+          RowBox[{"Hessian", " ", "estimator"}], " ", "*)"}], " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"\[Theta]", "-=", 
+          RowBox[{"\[Eta]", "*", 
+           RowBox[{
+            RowBox[{"Inverse", "[", "pH", "]"}], ".", "m"}]}]}]}], ")"}]}], 
+      ";"}], "                        ", 
      RowBox[{"(*", " ", 
       RowBox[{"Newton", ",", " ", 
        RowBox[{
@@ -1236,18 +1331,30 @@ Cell[BoxData[
    3.8871716799841704`*^9}, {3.887171719326579*^9, 3.8871717601547647`*^9}, {
    3.8871717934263144`*^9, 3.8871718523203106`*^9}, {3.887171923781188*^9, 
    3.887171923852189*^9}, {3.8871719789758415`*^9, 3.8871719790708427`*^9}, {
-   3.887172107372534*^9, 3.8871721171447372`*^9}},
- CellLabel->"In[39]:=",
- CellID->9007343,ExpressionUUID->"f99d33a0-4a70-4846-9362-9411e232f4ff"],
+   3.887172107372534*^9, 3.8871721171447372`*^9}, {3.887176878571475*^9, 
+   3.8871768803696585`*^9}, {3.8871769676445503`*^9, 
+   3.8871769791650567`*^9}, {3.887177119438673*^9, 3.887177123708002*^9}, {
+   3.8871775198019953`*^9, 3.8871775376871147`*^9}, {3.887177591676222*^9, 
+   3.887177621840672*^9}, {3.887177670903861*^9, 3.8871776710099106`*^9}, {
+   3.8871779883452463`*^9, 3.8871780101904817`*^9}, {3.8871781801204586`*^9, 
+   3.887178201247096*^9}, {3.8871791310425367`*^9, 3.887179135410411*^9}, {
+   3.8871793763604636`*^9, 3.887179421344959*^9}, {3.8871795714748497`*^9, 
+   3.8871796495789337`*^9}, 3.8871798125190196`*^9, {3.8871798623621807`*^9, 
+   3.887179921374984*^9}, 3.887179953024444*^9, {3.887180380081127*^9, 
+   3.887180391338399*^9}, 3.8871805080846224`*^9, {3.8871806101172056`*^9, 
+   3.8871806426395645`*^9}, {3.8871806738686457`*^9, 
+   3.8871807217728715`*^9}, {3.887180852689847*^9, 3.8871808580950985`*^9}},
+ CellLabel->"In[3]:=",
+ CellID->275645504,ExpressionUUID->"af5f1e8c-1dab-4e82-ba04-25ca5e39e7d5"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`fn$$ = 
-    4, $CellContext`l\[Alpha]m$$ = -9, $CellContext`mode$$ = 
-    3, $CellContext`pt$$ = {1.6600000000000001`, -3}, $CellContext`rn$$ = 
+    1, $CellContext`l\[Alpha]m$$ = -9, $CellContext`mode$$ = 
+    3, $CellContext`pt$$ = {1, 2}, $CellContext`rn$$ = 
     3, $CellContext`seed$$ = 1, $CellContext`steps$$ = 
-    49, $CellContext`\[Alpha]$$ = 0.5, $CellContext`\[Beta]$$ = 
+    20, $CellContext`\[Alpha]$$ = 0.5, $CellContext`\[Beta]$$ = 
     0.7, $CellContext`\[Beta]1$$ = 0.8, $CellContext`\[Beta]2$$ = 
     0.9, $CellContext`\[Gamma]$$ = 0.7, $CellContext`\[Epsilon]$$ = 
     0.5, $CellContext`\[Eta]$$ = 0.7, Typeset`show$$ = True, 
@@ -1308,8 +1415,8 @@ Cell[BoxData[
        Hold[$CellContext`\[Eta]$$], 0.7, "\[Eta]"}, 0, 1, 0.01}, {{
        Hold[$CellContext`\[Beta]$$], 0.7, "\[Beta]"}, 0, 1, 0.01}, {{
        Hold[$CellContext`\[Gamma]$$], 0.7, "\[Gamma]"}, 0, 1, 0.01}}, 
-    Typeset`size$$ = {450., {142., 146.90402100538995`}}, Typeset`update$$ = 
-    0, Typeset`initDone$$, Typeset`skipInitDone$$ = False}, 
+    Typeset`size$$ = {450., {143., 147.0141031300982}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`fn$$ = 
@@ -1331,7 +1438,7 @@ Cell[BoxData[
          Part[$CellContext`fun, $CellContext`fn$$]; $CellContext`g = 
          Part[$CellContext`gr, $CellContext`fn$$]; {$CellContext`ix, \
 $CellContext`iy} = $CellContext`pt$$; $CellContext`\[Alpha]m = 
-         Exp[$CellContext`l\[Alpha]m$$] + 0.; 
+         Exp[$CellContext`l\[Alpha]m$$] + 0.; $CellContext`hst = {}; 
         Switch[$CellContext`mode$$, 1, $CellContext`traj$ = Table[
              $CellContext`fndtr[$CellContext`ix, $CellContext`iy, \
 $CellContext`mt], {$CellContext`mt, $CellContext`mtn}]; Show[
@@ -1471,7 +1578,7 @@ $CellContext`\[Beta]$$, $CellContext`\[Gamma]$$, $CellContext`pt$$},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
-    Initialization:>((($CellContext`epsilon = 10^(-5); $CellContext`cut = 
+    Initialization:>((($CellContext`epsilon = 10^(-4); $CellContext`cut = 
         10; $CellContext`methods = {
          "SGD", "momentum", "ADAM", "cdOGR", "fOGR", 
           "cfOGR"}; $CellContext`col = {
@@ -1530,7 +1637,10 @@ $CellContext`d}]; $CellContext`maxd = 20; $CellContext`eh[
            Transpose[$CellContext`ev], 
            DiagonalMatrix[
             $CellContext`eh[$CellContext`e]], $CellContext`ev]); \
-$CellContext`noise := RandomReal[
+$CellContext`s[
+          Pattern[$CellContext`M, 
+           Blank[]]] := $CellContext`M + 
+         Transpose[$CellContext`M]; $CellContext`noise := RandomReal[
           NormalDistribution[
           0, $CellContext`\[Epsilon]$$], $CellContext`d]; $CellContext`fndtr[
           Pattern[$CellContext`ix$, 
@@ -1543,14 +1653,13 @@ $CellContext`noise := RandomReal[
 $CellContext`iy$}; $CellContext`t = ($CellContext`m = ($CellContext`mg = \
 ($CellContext`m\[Theta] = ($CellContext`vv = ($CellContext`mg\[Theta] = 
                0.))))); $CellContext`dgg = ($CellContext`d\[Theta]\[Theta] = \
-$CellContext`\[Epsilon]$$); $CellContext`m\[Theta]\[Theta] = \
-($CellContext`mgg = $CellContext`\[Epsilon]$$ IdentityMatrix[$CellContext`d]); 
-         Prepend[
+$CellContext`epsilon); $CellContext`m\[Theta]\[Theta] = ($CellContext`mgg = \
+$CellContext`epsilon IdentityMatrix[$CellContext`d]); Prepend[
            
            Table[$CellContext`p\[Theta] = $CellContext`\[Theta]; 
             Part[{$CellContext`SGD, $CellContext`momentum, $CellContext`ADAM, \
-$CellContext`cdOGR, $CellContext`fOGR, $CellContext`cfOGR}, $CellContext`mt$][
-             ReplaceAll[$CellContext`g, 
+$CellContext`cdOGR, $CellContext`fOGR, $CellContext`cfOGR1}, \
+$CellContext`mt$][ReplaceAll[$CellContext`g, 
                 $CellContext`sub[$CellContext`\[Theta]]] + \
 $CellContext`noise]; 
             If[Norm[$CellContext`\[Theta]] > $CellContext`maxd, $CellContext`\
@@ -1643,13 +1752,44 @@ $CellContext`ng$ - $CellContext`mg] - $CellContext`mgg)]; {$CellContext`e, \
 $CellContext`ev} = Eigensystem[$CellContext`mgg]; $CellContext`piH = Dot[
            Transpose[$CellContext`ev], 
            DiagonalMatrix[
-            Sqrt[Diagonal[
-               Dot[$CellContext`ev, $CellContext`m\[Theta]\[Theta], 
-                
-                Transpose[$CellContext`ev]]]/($CellContext`e + $CellContext`\
-\[Epsilon]$$)]], $CellContext`ev]; 
+            Sqrt[
+             Abs[
+             Diagonal[$CellContext`h = 
+                Dot[$CellContext`ev, $CellContext`m\[Theta]\[Theta], 
+                  
+                  Transpose[$CellContext`ev]]]/($CellContext`e + \
+$CellContext`epsilon)]]], $CellContext`ev]; 
+        AppendTo[$CellContext`hst, $CellContext`h]; 
         SubtractFrom[$CellContext`\[Theta], $CellContext`\[Eta]$$ 
-          Dot[$CellContext`piH, $CellContext`m]]); Null); 
+          Dot[$CellContext`piH, $CellContext`m]]); $CellContext`cfOGR1[
+         Pattern[$CellContext`ng$, 
+          Blank[]]] := (
+        AddTo[$CellContext`m, $CellContext`\[Gamma]$$ ($CellContext`ng$ - \
+$CellContext`m)]; 
+        AddTo[$CellContext`m\[Theta], $CellContext`\[Beta]$$ ($CellContext`\
+\[Theta] - $CellContext`m\[Theta])]; 
+        AddTo[$CellContext`m\[Theta]\[Theta], $CellContext`\[Beta]$$ (
+           KroneckerProduct[$CellContext`\[Theta] - $CellContext`m\[Theta], \
+$CellContext`\[Theta] - $CellContext`m\[Theta]] - $CellContext`m\[Theta]\
+\[Theta])]; 
+        AddTo[$CellContext`mg, $CellContext`\[Beta]$$ ($CellContext`ng$ - \
+$CellContext`mg)]; 
+        AddTo[$CellContext`mgg, $CellContext`\[Beta]$$ (
+           KroneckerProduct[$CellContext`ng$ - $CellContext`mg, \
+$CellContext`ng$ - $CellContext`mg] - $CellContext`mgg)]; $CellContext`\
+\[Sigma]\[Theta] = 
+         MatrixFunction[
+          Sqrt, $CellContext`m\[Theta]\[Theta]]; $CellContext`\[Sigma]g = 
+         MatrixFunction[
+          Sqrt, $CellContext`mgg]; {$CellContext`e, $CellContext`ev} = 
+         Eigensystem[$CellContext`m\[Theta]\[Theta]]; $CellContext`pH = Dot[
+           Transpose[$CellContext`ev], Dot[$CellContext`ev, 
+             $CellContext`s[
+              Dot[$CellContext`\[Sigma]\[Theta], $CellContext`\[Sigma]g]], 
+             Transpose[$CellContext`ev]]/$CellContext`s[
+            Table[$CellContext`e, $CellContext`d]], $CellContext`ev]; 
+        SubtractFrom[$CellContext`\[Theta], $CellContext`\[Eta]$$ Dot[
+            Inverse[$CellContext`pH], $CellContext`m]]); Null); 
      Typeset`initDone$$ = True),
     SynchronousInitialization->True,
     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
@@ -1659,13 +1799,16 @@ $CellContext`ev} = Eigensystem[$CellContext`mgg]; $CellContext`piH = Dot[
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{
-  3.887169935310129*^9, 3.887170040382119*^9, 3.8871712962757745`*^9, 
-   3.8871714248578176`*^9, 3.8871714556266174`*^9, {3.88717160089764*^9, 
-   3.8871716210880156`*^9}, {3.8871716697305727`*^9, 
-   3.8871716805243073`*^9}, {3.8871717215806456`*^9, 3.887171762299761*^9}, {
-   3.8871717943113127`*^9, 3.8871718532753086`*^9}, 3.887171924691187*^9, 
-   3.887171979762841*^9, 3.8871721184847345`*^9},
- CellLabel->"Out[39]=",ExpressionUUID->"3676dbbd-c80b-4144-9838-886c2f8801cb"]
+  3.8871769800793962`*^9, 3.8871771247884417`*^9, {3.887177521863722*^9, 
+   3.8871775385240636`*^9}, {3.8871775951553607`*^9, 3.887177622375354*^9}, 
+   3.887177679143092*^9, {3.8871779966779804`*^9, 3.8871780106889534`*^9}, {
+   3.887178172795965*^9, 3.8871782016895504`*^9}, 3.8871792840940895`*^9, 
+   3.8871794220787067`*^9, 3.887179650710771*^9, 3.8871798134885178`*^9, {
+   3.887179862912966*^9, 3.8871799219092426`*^9}, 3.88717995473628*^9, 
+   3.887180391941478*^9, {3.8871804994951096`*^9, 3.887180508510364*^9}, 
+   3.8871806432940717`*^9, 3.887180688081936*^9, {3.887180728193699*^9, 
+   3.8871807768137054`*^9}, 3.887180871744675*^9, 3.887180948246436*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"4a77cb2b-820a-41d5-a326-90fffa0a7a45"]
 }, Open  ]]
 },
 WindowSize->{1142.1, 648.9},
@@ -1689,9 +1832,9 @@ CellTagsIndex->{}
 Notebook[{
 Cell[558, 20, 1211, 34, 60, "Input",ExpressionUUID->"d26b43b1-6258-4aac-a226-e3f633118636"],
 Cell[CellGroupData[{
-Cell[1794, 58, 52332, 1182, 1302, "Input",ExpressionUUID->"f99d33a0-4a70-4846-9362-9411e232f4ff",
- CellID->9007343],
-Cell[54129, 1242, 21147, 425, 440, "Output",ExpressionUUID->"3676dbbd-c80b-4144-9838-886c2f8801cb"]
+Cell[1794, 58, 57013, 1289, 1406, "Input",ExpressionUUID->"af5f1e8c-1dab-4e82-ba04-25ca5e39e7d5",
+ CellID->275645504],
+Cell[58810, 1349, 23153, 461, 440, "Output",ExpressionUUID->"4a77cb2b-820a-41d5-a326-90fffa0a7a45"]
 }, Open  ]]
 }
 ]
