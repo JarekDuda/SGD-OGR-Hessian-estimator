@@ -5,6 +5,8 @@ For SGD optimization like neural network training, there is a general pursue to 
 
 The main article: https://arxiv.org/pdf/1901.11457 , focused on 1D evolving parabola model: https://arxiv.org/pdf/1907.07063
 
+Light introduction: https://community.wolfram.com/groups/-/m/t/2917908
+
 Talk focused on OGR: https://youtu.be/Ad1YWjQBMBY and its slides: https://www.dropbox.com/s/thvbwyp5mtwcrw4/OGR.pdf
 
 Overview of methods: https://www.dropbox.com/s/54v8cwqyp7uvddk/SGD.pdf and talk: https://youtu.be/ZSnYtPINcug
